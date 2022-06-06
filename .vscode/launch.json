@@ -1,0 +1,78 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch CodeGenerator",
+            "request": "launch",
+            "mainClass": "CodeGenerator",
+            "projectName": "message-service8888"
+        },
+        {
+            "type": "java",
+            "name": "Launch CodeGenerator",
+            "request": "launch",
+            "mainClass": "com.ggl.CodeGenerator",
+            "projectName": "statistics8988"
+        },
+        {
+            "type": "java",
+            "name": "Launch ResourceClient9992",
+            "request": "launch",
+            "console": "internalConsole",
+            "mainClass": "com.ggl.cloud.ResourceClient9992",
+            "projectName": "resource-client9992"
+        },
+        {
+            "type": "java",
+            "name": "Launch ServerClient9000",
+            "request": "launch",
+            "console": "internalConsole",
+            "mainClass": "com.ggl.cloud.ServerClient9000",
+            "projectName": "server-client9000"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-UserClient80<user-client80>",
+            "request": "launch",
+            "console": "internalConsole",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ggl.cloud.UserClient80",
+            "projectName": "user-client80",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Gateway8999<gateway8999>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.ggl.cloud.Gateway8999",
+            "projectName": "gateway8999",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Statistics8988<statistics8988>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.ggl.cloud.Statistics8988",
+            "projectName": "statistics8988",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MessageService8888<message-service8888>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.ggl.cloud.MessageService8888",
+            "projectName": "message-service8888",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

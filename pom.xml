@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ggl</groupId>
+    <artifactId>GGL-ZONE</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+    <modules>
+        <module>user-client80</module>
+        <module>server-client9000</module>
+        <module>common</module>
+        <module>gateway8999</module>
+        <!-- <module>spring-security-oauth2-8233</module> -->
+        <module>message-service8888</module>
+        <module>ggl-spring-security-common</module>
+        <module>resource-client9992</module>
+        <module>statistics8988</module>
+  </modules>
+
+    <properties>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven.compiler.source>8</maven.compiler.source>
+
+        <maven.compiler.target>8</maven.compiler.target>
+
+        <junit.version>4.12</junit.version>
+
+        <!-- <log4j.version>1.2.17</log4j.version> -->
+
+        <mysql.version>8.0.29</mysql.version>
+
+        <druid-spring-boot-starter.version>1.2.9</druid-spring-boot-starter.version>
+
+        <!-- <mybatis.spring.boot.version>1.3.0</mybatis.spring.boot.version> -->
+
+        <spring-cloud-security.version>2.2.2.Release</spring-cloud-security.version>
+
+        <common.version>1.0</common.version>
+
+        <springboot.version>2.2.2.RELEASE</springboot.version>
+
+        <ggl.version>1.0</ggl.version>
+        
+        <hutool-all.version>5.7.20</hutool-all.version>
+
+        <!-- <pagehelper-spring-boot-starter.version>1.3.0</pagehelper-spring-boot-starter.version> -->
+
+        <spring-boot-starter-data-redis.version>2.2.2.RELEASE</spring-boot-starter-data-redis.version>
+
+        <jjwt.version>1.0.0</jjwt.version>
+
+        <jedis.version>3.7.0</jedis.version>
+
+        <!-- <spring-cloud-starter-oauth2.version>2.2.2.RELEASE</spring-cloud-starter-oauth2.version> -->
+
+        <mybatis-plus-generator.version>3.5.1</mybatis-plus-generator.version>
+
+        <mybatis-plus-boot-starter.version>3.5.1</mybatis-plus-boot-starter.version>
+
+        <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+        
+        <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
+
+        <commons-pool2.version>2.10.0</commons-pool2.version>
+
+        <lombok.version>1.18.22</lombok.version>
+
+        <velocity-engine-core.version>2.3</velocity-engine-core.version>
+
+        <spring-boot-starter-websocket.version>2.6.8</spring-boot-starter-websocket.version>
+
+
+    </properties>
+    
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.1.0.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.2.2.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${springboot.version}</version>
+             </plugin>
+             
+        </plugins>
+    </build>
+</project>

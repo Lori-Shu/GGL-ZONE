@@ -1,0 +1,129 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ggl.cloud.mapper.ServerMapper">
+    <resultMap id="note_resultMap" type="com.ggl.cloud.domain.Note">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="title" property="title"/>
+        <result column="time" property="time"/>
+        <result column="content" property="content"/>
+        <result column="uuid" property="uuid"/>
+    </resultMap>
+    <resultMap id="user_resultMap" type="com.ggl.cloud.domain.User">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="password" property="password"/>
+        <result column="uuid" property="uuid"/>
+    </resultMap>
+    <resultMap id="music_resultMap" type="com.ggl.cloud.domain.Music">
+        <result column="user_id" property="userId"/>
+        <result column="music" property="music"/>
+        <result column="musician" property="musician"/>
+        <result column="src" property="src"/>
+        <result column="album" property="album"/>
+        <result column="uuid" property="uuid"/>
+    </resultMap>
+    <resultMap id="video_resultMap" type="com.ggl.cloud.domain.Video">
+        <result column="user_id" property="userId"/>
+        <result column="video_name" property="videoName"/>
+        <result column="video_author" property="videoAuthor"/>
+        <result column="src" property="src"/>
+        <result column="introduction" property="introduction"/>
+        <result column="uuid" property="uuid"/>
+    </resultMap>
+    <select id="getNotes" resultType="com.ggl.cloud.domain.Note" resultMap="note_resultMap">
+        select id,
+               user_id,
+               title,
+               year,
+               month,
+               day,
+               content,
+               uuid
+        from note
+        where user_id = #{userId}
+    </select>
+    <select id="selectNotes" resultType="com.ggl.cloud.domain.Note" resultMap="note_resultMap">
+        select id,
+               user_id,
+               title,
+               year,
+               month,
+               day,
+               content,
+               uuid
+        from note
+        where user_id = #{userId}
+          and year = #{year}
+          and month = #{month}
+          and day = #{day}
+          and title = ifnull(#{title}, title)
+    </select>
+    <update id="updateNote">
+        update note
+        set title=#{title},
+            year=#{year},
+            month=#{month},
+            day=#{day},
+            content=#{content}
+        where uuid = #{uuid}
+    </update>
+    <select id="selectUser" resultMap="user_resultMap" resultType="com.ggl.cloud.domain.User">
+        select id, user_id, password, uuid
+        from user
+        where user_id = #{userId}
+    </select>
+    <insert id="insertUser">
+        insert into user(user_id, password, uuid)
+        values (#{userId}, #{password}, #{uuid})
+    </insert>
+    <insert id="insertNote">
+        insert into note(user_id, title, year, month, day, content, uuid)
+        values (#{userId}, #{title}, #{year}, #{month}, #{day}, #{content}, #{uuid})
+    </insert>
+    <delete id="deleteNote">
+        delete
+        from note
+        where uuid = #{uuid}
+    </delete>
+    <select id="selectMusic" resultMap="music_resultMap" resultType="com.ggl.cloud.domain.Music">
+        select user_id, music, src, musician, album, uuid
+        from music
+        where user_id = #{userId}
+    </select>
+    <select id="changeMusic" resultMap="music_resultMap" resultType="com.ggl.cloud.domain.Music">
+        select user_id, music, src, musician, album, uuid
+        from music
+        where uuid = #{uuid}
+    </select>
+    <select id="selectMusicParam" resultMap="music_resultMap" resultType="com.ggl.cloud.domain.Music">
+        select user_id, music, src, musician, album, uuid
+        from music
+        where user_id = #{userId}
+          and music = ifnull(#{music}, music)
+          and musician = ifnull(#{musician}, musician)
+          and album = ifnull(#{album}, album)
+    </select>
+    <insert id="uploadMusic">
+        insert into music(user_id, music, musician, src, album, uuid)
+        values (#{userId}, #{music}, #{musician}, #{src}, #{album}, #{uuid})
+    </insert>
+    <delete id="deleteMusic">
+        delete
+        from music
+        where uuid = #{uuid}
+    </delete>
+    <insert id="uploadVideo">
+        insert into video(user_id, video_name, video_author, src, introduction, uuid)
+        values (#{userId}, #{videoName}, #{videoAuthor}, #{src}, #{introduction}, #{uuid})
+    </insert>
+    <select id="searchVideo" resultMap="video_resultMap" resultType="com.ggl.cloud.domain.Video">
+        select user_id, video_author, src, uuid, introduction, video_name
+        from video
+    </select>
+    <delete id="deleteVideo">
+        delete
+        from video
+        where uuid = #{uuid}
+    </delete>
+</mapper> -->

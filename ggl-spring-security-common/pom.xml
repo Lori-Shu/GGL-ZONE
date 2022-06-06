@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>GGL-ZONE</artifactId>
+    <groupId>com.ggl</groupId>
+    <version>1.0</version>
+  </parent>
+  
+
+  <artifactId>ggl-spring-security-common</artifactId>
+  <version>1.0</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-security</artifactId>
+      <version>${springboot.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.10duke.client.jwt</groupId>
+      <artifactId>jjwt</artifactId>
+      <version>${jjwt.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.ggl</groupId>
+      <artifactId>common</artifactId>
+      <version>${common.version}</version>
+    </dependency>
+    
+  </dependencies>
+</project>

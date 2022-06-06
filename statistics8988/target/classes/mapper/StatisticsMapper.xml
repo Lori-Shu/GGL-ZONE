@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ggl.cloud.mapper.StatisticsMapper">
+<resultMap type="com.ggl.cloud.entity.Statistics" id="Statistics">
+<!-- id用于映射主键 -->
+
+<id column="id" property="id" />
+
+<!-- 非主键使用result映射 -->
+
+<result column="create_time" property="createTime" />
+
+<result column="update_time" property="updateTime" />
+<result column="deleted" property="deleted" />
+<result column="version" property="version" />
+<result column="music_upload_count" property="musicUploadCount" />
+<result column="music_delete_count" property="musicDeleteCount" />
+<result column="user_registry_count" property="userRegistryCount" />
+</resultMap>
+<select id="mySelectPage" resultMap="Statistics">
+    select * from statistics where Date(create_time) between #{from} and #{to} order by create_time asc limit #{startIndex},#{pageSize}
+</select>
+</mapper>

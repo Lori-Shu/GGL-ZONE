@@ -1,0 +1,29 @@
+# See http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+server:
+  port: 8988
+spring:
+  application:
+    name: Statistics8988
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  profiles:
+    active: dev
+  devtools:
+    livereload:
+      port: 35734
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      url: jdbc:mysql://localhost:3306/ggl_zone?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: guang20010427
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 3600000
+        readTimeout: 3600000
+  

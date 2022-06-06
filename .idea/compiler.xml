@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="server-client" />
+        <module name="spring-sercurity-oauth2" />
+        <module name="User-client" />
+        <module name="common" />
+        <module name="spring-sercurity-oauth2-8233" />
+        <module name="user-client" />
+        <module name="vue3" />
+        <module name="gateway8999" />
+        <module name="spring-security-oauth2-8233" />
+        <module name="gateWay8999" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring-sercurity-oauth2-8233" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="TypeScriptCompiler">
+    <option name="useService" value="false" />
+  </component>
+</project>

@@ -1,0 +1,40 @@
+server:
+  port: 9992
+  
+spring:
+  application:
+    name: ResourceClient9992
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+  servlet:
+    multipart:
+      enabled: true
+      # 不限制文件大小
+      max-file-size: -1
+      # 不限制请求体大小
+      max-request-size: -1
+      # 临时IO目录
+      location: E://GGL-ZONE/tempio9992/
+      # 不延迟解析
+      resolve-lazily: false
+      # 超过1Mb，就IO到临时目录
+      file-size-threshold: 1MB
+
+  profiles:
+    active: dev
+
+  resources:
+    static-locations:
+    - file:E:\\GGL-ZONE-resources\
+
+  devtools:
+    livereload:
+      port: 35733
+
+feign:
+  httpclient:
+    time-to-live: 3600000
+    connection-timeout: 3600000
