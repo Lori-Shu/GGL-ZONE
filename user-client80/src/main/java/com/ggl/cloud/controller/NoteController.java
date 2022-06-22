@@ -29,15 +29,15 @@ import lombok.extern.slf4j.Slf4j;
 public class NoteController {
     @Resource
     private ServerFeign service;
-    @GetMapping("add")
+    @PostMapping("add")
     public CommonResult addNote(@RequestBody Note note) {
         return service.add(note);
     }
-    @GetMapping("delete")
+    @PostMapping("delete")
     public CommonResult deleteNote(@RequestBody Note note) {
         return service.delete(note);
     }
-    @GetMapping("update")
+    @PostMapping("update")
     public CommonResult updateNote(@RequestBody Note note) {
 //        log.info(note.toString());
         return service.update(note);

@@ -30,6 +30,8 @@
 <script>
 import {getCurrentInstance, reactive} from "vue";
 import axios from "axios";
+import {router} from "../router/index.js"
+import { message } from "ant-design-vue";
 
 export default {
   name: "AddNote",
@@ -45,42 +47,41 @@ export default {
     // console.log(thisdata.uuid)
 
     let submitForm = () => {
-
-      if (thisdata.uuid !== undefined) {
-        axios.get("http://user-client.vaiwan.com/user/editnote", {
-          params: {
-            "uuid": thisdata.uuid,
-            "userId": thisdata.userId,
-            "title": thisdata.title,
-            "year": thisdata.year,
-            "month": thisdata.month,
-            "day": thisdata.day,
-            "content": thisdata.content
-          }
-        }).then(
-            (response) => {
-              // console.log(thisdata.content)
-              alert(response.data.detail)
-              // console.log( response.data["result"])
-              // console.log(responsedata)
-            }
-        ).catch(err => {
-          alert(err)
-        })
-      } else {
-        axios.get("http://user-client.vaiwan.com/user/createnote", {
-          params: {
+      // if (thisdata.uuid !== undefined) {
+      //   axios.post("/user/editnote", {
+      //     params: {
+      //       "uuid": thisdata.uuid,
+      //       "userId": thisdata.userId,
+      //       "title": thisdata.title,
+      //       "year": thisdata.year,
+      //       "month": thisdata.month,
+      //       "day": thisdata.day,
+      //       "content": thisdata.content
+      //     }
+      //   }).then(
+      //       (response) => {
+      //         // console.log(thisdata.content)
+      //         alert(response.data.detail)
+      //         // console.log( response.data["result"])
+      //         // console.log(responsedata)
+      //       }
+      //   ).catch(err => {
+      //     alert(err)
+      //   })
+      // } else {
+        axios.post("/user/note/add", {
             "userId": window.sessionStorage.getItem("userId"),
             "title": thisdata.title,
             "year": thisdata.year,
             "month": thisdata.month,
             "day": thisdata.day,
             "content": thisdata.content
-          }
-        }).then(
+          }).then(
             (response) => {
               // console.log(thisdata.content)
-              alert(response.data.detail)
+              message.info(response.data.detail)
+              router.push("/main/note")
+
               // console.log( response.data["result"])
               // console.log(responsedata)
             }
@@ -89,7 +90,7 @@ export default {
           alert(err)
         })
       }
-    }
+    // }
 
     return {
       thisdata,

@@ -51,7 +51,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper,Video> implements 
         @Override
         @Cacheable(value = "selectPageVideo",key = "#video.userId")
         public CommonResult selectVideoPage(int pageNumber, int pageSize, Video video) {
-            // TODO Auto-generated method stub
+            // 分页查询视频信息
             Page<Video> videoPage=new Page<>(pageNumber,pageSize);
         QueryWrapper<Video> queryWrapper=new QueryWrapper<>();
         if(!StringUtils.isEmpty(video.getUserId())){

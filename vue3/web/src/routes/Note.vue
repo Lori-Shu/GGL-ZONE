@@ -42,34 +42,38 @@ export default {
     const select = () => {
       // console.log(data.year)
       if (selectParam.year !== "" && selectParam.month !== "" && selectParam.day !== "") {
-        axios.get("http://user-client.vaiwan.com/user/selectpage", {
-          params: {
-            userId: window.sessionStorage.getItem("userId"),
+        axios.post("/user/note/select_page",{
+          userId: window.sessionStorage.getItem("userId"),
             year: selectParam.year,
             month: selectParam.month,
             day: selectParam.day,
             title: selectParam.title,
-            pageNumber: 1
+        }, {
+          params: {
+            pageNumber: 1,
+            pageSize: 8
           }
         }).then((response) => {
-          data.value = response.data.result.pageList
+          data.value = response.data.result.list
           total.value = response.data.result.total
           selected.value = "1"
-          current.value = 1
+          // current.value = 1
           alert("查询成功")
         }).catch(err => {
           alert(err)
         })
       } else if (selectParam.year === "" && selectParam.month === "" && selectParam.day === "") {
         alert("已查询所有结果")
-        axios.get("http://user-client.vaiwan.com/user/getpage", {
+        axios.post("/user/note/select_page", {
+          userId: window.sessionStorage.getItem("userId")
+        },{
           params: {
-            userId: window.sessionStorage.getItem("userId"),
-            pageNumber: 1
+            pageNumber: 1,
+            pageSize : 8
           }
         }).then(
             (response) => {
-              data.value = response.data.result.pageList
+              data.value = response.data.result.list
               // console.log(data)
               // console.log(response.data.result.pageInfo)
               total.value = response.data.result.total

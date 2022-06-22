@@ -10,6 +10,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -32,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements INoteService {
     @Override
-    @CachePut(value = "insertNote",key = "#note.userId")
+    @CacheEvict(value = "selectPageNote",allEntries = true)
     @SentinelResource(value = "insertNote",blockHandler = "defaultBlock",blockHandlerClass = {BlockHandlerClass.class})
     public CommonResult insertNote(Note note){
         if(save(note)){
@@ -42,10 +45,11 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
     }
 
     @Override
-    @CacheEvict(value = "selectPageNote",key = "#note.userId")
+    @CacheEvict(value = "selectPageNote",allEntries = true)
     @SentinelResource(value = "deleteNote",blockHandler = "defaultBlock",blockHandlerClass = {BlockHandlerClass.class})
     public CommonResult deleteNote(Note note) {
-        // TODO Auto-generated method stub
+        // 删除笔记接口
+        log.warn(note.toString());
         if(removeById(note)){
             return CommonResult.builder().code(CommonResult.SUCCESS).detail("删除笔记成功").build();
         }
@@ -53,10 +57,10 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
     }
 
     @Override
-    @CacheEvict(value = "selectPageNote",key = "#note.userId")
+    @CacheEvict(value = "selectPageNote",allEntries = true)
     @SentinelResource(value = "updateNote",blockHandler = "defaultBlock",blockHandlerClass = {BlockHandlerClass.class})
     public CommonResult updateNote(Note note) {
-        // TODO Auto-generated method stub
+        // 更新笔记接口
              // 先查再改乐观锁才起效,version必须为查出来的值，否则会修改失败
             Note thisNote=getById(note.getId());
             note.setVersion(thisNote.getVersion());
@@ -68,9 +72,9 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
     }
 
     @Override
-    @Cacheable(value = "selectPageNote",key = "#note.userId")
+    @Cacheable(value = "selectPageNote",key = "T(String).valueOf(#pageNumber).concat('-').concat(#pageSize).concat('-').concat(#note.toString())")
     public CommonResult selectPage(int pageNumber, int pageSize, Note note) {
-        // TODO Auto-generated method stub
+        // 分页查询笔记
         if(StringUtils.isEmpty(note.getUserId())){
             throw new RuntimeException("userId不能为空");
         }
@@ -95,7 +99,7 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
         if(!StringUtils.isEmpty(note.getContent())){
             queryWrapper.like("content", note.getContent());
         }
-        
+        long count = count(queryWrapper);
         page(page,queryWrapper); 
         log.warn(note.toString());
         // System.out.println(page.getRecords());
@@ -103,7 +107,10 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
     //    log.info(splitPage.getPageList().toString());
         if(page.getSize()>0){
             log.warn(page.getRecords().toString());
-            return CommonResult.builder().code(CommonResult.SUCCESS).detail("查询成功").result(page.getRecords()).build();
+            Map<String,Object> resultMap=new HashMap<>();
+            resultMap.put("total", (int)count);
+            resultMap.put("list", page.getRecords());
+            return CommonResult.builder().code(CommonResult.SUCCESS).detail("查询成功").result(resultMap).build();
         }
         throw new RuntimeException("查询过程出现问题！");
     } 

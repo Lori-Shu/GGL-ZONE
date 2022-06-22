@@ -89,7 +89,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper,Music> implements 
     }
 @Override
 public CommonResult getStatistics() {
-    // TODO Auto-generated method stub
+    // 提供给数据服务的数据查询接口
     LocalDateTime nowTime=LocalDateTime.now().plusDays(-1);
     DateTimeFormatter dateTimeFormatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
     String s=dateTimeFormatter.format(nowTime);

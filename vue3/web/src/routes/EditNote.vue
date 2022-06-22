@@ -30,6 +30,8 @@
 <script>
 import {getCurrentInstance, reactive} from "vue";
 import axios from "axios";
+import { message } from "ant-design-vue";
+import {router} from "../router/index"
 
 export default {
   name: "EditNote",
@@ -45,50 +47,25 @@ export default {
     // console.log(thisdata.uuid)
 
     let submitForm = () => {
-
-      if (thisdata.uuid !== undefined) {
-        axios.get("http://user-client.vaiwan.com/user/editnote", {
-          params: {
-            "uuid": thisdata.uuid,
+        axios.post("/user/note/update", {
+            "id": thisdata.id,
             "userId": thisdata.userId,
             "title": thisdata.title,
             "year": thisdata.year,
             "month": thisdata.month,
             "day": thisdata.day,
             "content": thisdata.content
-          }
         }).then(
             (response) => {
               // console.log(thisdata.content)
-              alert(response.data.detail)
+                router.push("/main/note")
+              message.info(response.data.detail)
               // console.log( response.data["result"])
               // console.log(responsedata)
             }
         ).catch(err => {
           alert(err)
         })
-      } else {
-        axios.get("http://user-client.vaiwan.com/user/createnote", {
-          params: {
-            "userId": window.sessionStorage.getItem("userId"),
-            "title": thisdata.title,
-            "year": thisdata.year,
-            "month": thisdata.month,
-            "day": thisdata.day,
-            "content": thisdata.content
-          }
-        }).then(
-            (response) => {
-              // console.log(thisdata.content)
-              alert(response.data.detail)
-              // console.log( response.data["result"])
-              // console.log(responsedata)
-            }
-        ).catch(err => {
-          // console.log(thisdata.content)
-          alert(err)
-        })
-      }
     }
 
     return {

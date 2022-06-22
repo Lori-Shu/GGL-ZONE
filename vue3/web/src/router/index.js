@@ -85,6 +85,13 @@ const routes = [
             
         },
         {
+            path:"/main/edit_note",
+            components:{
+                content:EditNote
+            },
+            
+        },
+        {
             path:"/main/user_detail",
             components:{
                 content:UserDetail

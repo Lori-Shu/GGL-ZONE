@@ -2,25 +2,26 @@
   <div id="noteView">
     <ol>
       <li v-for="i in responsedata" :key="i.uuid">
-        <router-link :to="{path:'/editnote',query:{noteData:JSON.stringify(i)}}">
+        <router-link :to="{path:'/main/edit_note',query:{noteData:JSON.stringify(i)}}">
           <span id="title">标题：{{ i.title }}</span>
           <span id="time">时间：{{ i.year }}年{{ i.month }}月{{ i.day }}日</span>
         </router-link>
-        <a-button id="deleteButton" type="primary" @click="deleteNote(i.uuid)">删除</a-button>
+        <a-button id="deleteButton" type="primary" @click="deleteNote(i)">删除</a-button>
         <br/>
         <span>—————————————————————————————————————————————————————————————</span>
       </li>
     </ol>
     <div>
-      <a-pagination v-model:current="current" :pageSize="8" :show-total="total => `总 ${total} 条数据`" :total="total"
+      <a-pagination v-model:current="current" :pageSize="pageSize" :show-total="total => `总 ${total} 条数据`" :total="total"
                     show-quick-jumper @change="onChange"/>
     </div>
   </div>
 </template>
 
 <script>
-import {inject, nextTick} from "vue";
+import {inject, nextTick,ref} from "vue";
 import axios from "axios";
+import { message } from "ant-design-vue";
 
 export default {
   name: "NoteView",
@@ -37,21 +38,24 @@ export default {
     let current = inject("current")
     let total = inject("total")
     let selected = inject("selected")
+    let pageSize=ref(8)
     const onChange = pageNumber => {
       // console.log(props.selected)
       if (selected.value === "0") {
-        axios.get("http://user-client.vaiwan.com/user/getpage", {
+        axios.post("/user/note/select_page", {
+          userId : window.sessionStorage.getItem("userId")
+        },{
           params: {
-            userId: window.sessionStorage.getItem("userId"),
-            pageNumber
+            pageNumber,
+            pageSize: pageSize.value
           }
         }).then(
             (response) => {
-              responsedata.value = response.data.result.pageList
+              responsedata.value = response.data.result.list
               // console.log(responsedata)
               total.value = response.data.result.total
               // console.log(total.value)
-              current.value = pageNumber
+              // current.value = pageNumber
               // console.log( response.data["result"])
               // console.log(responsedata)
             }
@@ -59,20 +63,24 @@ export default {
           alert(err)
         })
       } else {
-        axios.get("http://user-client.vaiwan.com/user/selectpage", {
-          params: {
-            userId: window.sessionStorage.getItem("userId"),
+        axios.post("/user/note/select_page",{
+          userId: window.sessionStorage.getItem("userId"),
             year: selectParam.year,
             month: selectParam.month,
             day: selectParam.day,
             title: selectParam.title,
+        }, {
+          params: {
+            pageSize: pageSize.value,
             pageNumber
           }
         }).then((response) => {
           // console.log(response.data.result.pageList)
-          responsedata.value = response.data.result.pageList
+          if(response.data.code===200){
+          responsedata.value = response.data.result.list
           total.value = response.data.result.total
-          current.value = pageNumber
+          // current.value = pageNumber
+          }
         }).catch(err => {
           alert(err)
         })
@@ -80,20 +88,22 @@ export default {
     }
     nextTick(() => {
       if (selected.value === "0") {
-        axios.get("http://user-client.vaiwan.com/user/getpage", {
+        axios.post("/user/note/select_page",{
+          userId: window.sessionStorage.getItem("userId"),
+        }, {
           params: {
-            userId: window.sessionStorage.getItem("userId"),
-            pageNumber: 1
+            pageNumber: 1,
+            pageSize: pageSize.value
           }
         }).then(
             (response) => {
-              responsedata.value = response.data.result.pageList
+              responsedata.value = response.data.result.list
               // console.log(responsedata)
               total.value = response.data.result.total
               // console.log(total.value)
 
               // console.log(responsedata.value)
-              current.value = 1
+              // current.value = 1
               // console.log( response.data["result"])
               // console.log(responsedata)
             }
@@ -103,20 +113,16 @@ export default {
       }
     })
 
-    let deleteNote = uuid => {
+    let deleteNote = note => {
       //confirm返回一个boolean需要自行处理
       if (confirm("确定删除这条笔记吗？")) {
-        axios.get("http://user-client.vaiwan.com/user/deletenote", {
-          params: {
-            uuid
-          }
-        }).then((response) => {
-          if (response.data.detail === "删除成功") {
-            alert("删除成功！")
+        axios.post("/user/note/delete", 
+        note
+        ).then((response) => {
+          if(response.data.code===200){
+            message.info(response.data.detail)
             onChange(current.value)
-          } else {
-            alert("删除失败")
-          }
+            }
         }).catch(err => {
           alert(err)
         })
@@ -124,6 +130,7 @@ export default {
     }
     return {
       responsedata,
+      pageSize,
       current,
       onChange,
       total,

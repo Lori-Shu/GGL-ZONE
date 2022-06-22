@@ -51,7 +51,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements  I
     @Override
     @SentinelResource(value = "registry",blockHandler = "defaultBlock",blockHandlerClass = {BlockHandlerClass.class})
     public CommonResult registry(User user) {
-        // TODO Auto-generated method stub
+        // 用户注册方法
         // log.info(userId+"###"+password);
         log.warn(user.toString());
         String userId=user.getUserId();
@@ -73,7 +73,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements  I
     @Override
     @SentinelResource(value = "deleteUser",blockHandler = "defaultBlock",blockHandlerClass = {BlockHandlerClass.class})
     public CommonResult deleteUser(User user) {
-        // TODO Auto-generated method stub
+        // 用户删除方法
         if(removeById(user)){
             return CommonResult.builder().code(CommonResult.SUCCESS).detail("删除用户成功").build();
         }
@@ -83,7 +83,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements  I
     @Override
     @SentinelResource(value = "updateUser",blockHandler = "defaultBlock",blockHandlerClass = {BlockHandlerClass.class})
     public CommonResult updateUser(User user) {
-        // TODO Auto-generated method stub
+        // 用户更新方法
         // !!!要乐观锁起效必须在所有需要锁的update方法先查询，将查到的version赋值后再调用修改
         User thisUser=getById(user.getId());
         if(!thisUser.getId().equals("")){
@@ -99,7 +99,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements  I
     @Override
     @SentinelResource(value = "selectUser",blockHandler = "defaultBlock",blockHandlerClass = {BlockHandlerClass.class})
     public User selectUser(User user) {
-        // TODO Auto-generated method stub
+        // 查询单个用户
         QueryWrapper<User> queryWrapper=new QueryWrapper<>();
         log.warn("userId"+user.getUserId());
         queryWrapper.eq("user_id", user.getUserId());
@@ -108,9 +108,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements  I
 
     @Override
     public CommonResult getStatistics() {
-        // TODO Auto-generated method stub
-    
-        // TODO Auto-generated method stub
+        // 提供给数据服务的接口
         LocalDateTime nowTime=LocalDateTime.now().plusDays(-1);
         DateTimeFormatter dateTimeFormatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String s=dateTimeFormatter.format(nowTime);

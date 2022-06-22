@@ -6,31 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="e8b81f05-e4e8-4412-a5ca-7188c7900e94" name="变更" comment="提交遗漏文件">
       <changelist_data name="Lori-Shu" email="(2412045439@qq.com)" />
-      <change afterPath="$PROJECT_DIR$/server-client/src/main/java/com/ggl/cloud/controller/DownloadController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-client/src/main/java/com/ggl/cloud/service/DownloadService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-client/src/main/java/com/ggl/cloud/service/impl/DownloadServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-client/src/main/java/com/ggl/cloud/controller/DownloadController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue3/web/src/downLoad/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vue3/web/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ggl/cloud/config/TokenWebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ggl/cloud/config/TokenWebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ggl/cloud/utils/StoreUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ggl/cloud/utils/StoreUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-client/src/main/java/com/ggl/cloud/controller/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server-client/src/main/java/com/ggl/cloud/controller/VideoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-client/src/main/java/com/ggl/cloud/service/impl/ServerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server-client/src/main/java/com/ggl/cloud/service/impl/ServerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-client/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server-client/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-client/src/test/java/test/Test001.java" beforeDir="false" afterPath="$PROJECT_DIR$/server-client/src/test/java/test/Test001.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-client/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server-client/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-client/target/classes/com/ggl/cloud/controller/VideoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/server-client/target/classes/com/ggl/cloud/controller/VideoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-client/src/main/java/com/ggl/cloud/feignservice/ServerFeign.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-client/src/main/java/com/ggl/cloud/feignservice/ServerFeign.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-client/target/classes/com/ggl/cloud/feignservice/ServerFeign.class" beforeDir="false" afterPath="$PROJECT_DIR$/user-client/target/classes/com/ggl/cloud/feignservice/ServerFeign.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue3/web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/vue3/web/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue3/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/vue3/web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue3/web/src/components/Title.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue3/web/src/components/Title.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue3/web/src/components/View.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue3/web/src/components/View.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue3/web/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue3/web/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue3/web/src/routes/MusicList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue3/web/src/routes/MusicList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue3/web/src/routes/PlayVideo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue3/web/src/routes/PlayVideo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue3/web/src/routes/Video.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue3/web/src/routes/Video.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue3/web/src/routes/Welcome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/vue3/web/src/routes/Welcome.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway8999/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway8999/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ggl-spring-security-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ggl-spring-security-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message-service8888/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/message-service8888/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource-client9992/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/resource-client9992/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statistics8988/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/statistics8988/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-client80/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-client80/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +108,7 @@
     "project.structure.last.edited": "项目",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "spring.configuration.checksum": "23c2280c5ea3a4faee60a29cab039197",
     "vue.rearranger.settings.migration": "true"
   }
@@ -175,7 +160,33 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserClient80">
+  <component name="RunManager" selected="应用程序.com.ggl.cloud.UserClient80">
+    <configuration name="UserClient80" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ggl.cloud.UserClient80" />
+      <module name="GGL-ZONE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ggl.cloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.ggl.cloud.UserClient80" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ggl.cloud.UserClient80" />
+      <module name="user-client80" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ggl.cloud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test001.testDelete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server-client" />
       <extension name="coverage">
@@ -188,19 +199,6 @@
       <option name="MAIN_CLASS_NAME" value="test.Test001" />
       <option name="METHOD_NAME" value="testDelete" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Gateway8999" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="gateWay8999" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ggl.cloud.Gateway8999" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.ggl.cloud.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -234,15 +232,13 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.Test001.testDelete" />
-      <item itemvalue="Spring Boot.UserClient80" />
-      <item itemvalue="Spring Boot.ServerClient9000" />
-      <item itemvalue="Spring Boot.Gateway8999" />
+      <item itemvalue="应用程序.UserClient80" />
+      <item itemvalue="应用程序.com.ggl.cloud.UserClient80" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.UserClient80" />
-        <item itemvalue="Spring Boot.ServerClient9000" />
-        <item itemvalue="Spring Boot.Gateway8999" />
+        <item itemvalue="应用程序.com.ggl.cloud.UserClient80" />
+        <item itemvalue="应用程序.UserClient80" />
         <item itemvalue="JUnit.Test001.testDelete" />
       </list>
     </recent_temporary>

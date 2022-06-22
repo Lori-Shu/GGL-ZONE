@@ -34,7 +34,7 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper,Friend> implements I
     @Override
     @CacheEvict(value = "friendSelect",key = "#friend.userId")
     public CommonResult deleteFriend(Friend friend) {
-        // TODO 删除好友数据库
+        // 删除好友数据库
         if(removeById(friend)){
             return CommonResult.builder().code(CommonResult.SUCCESS).detail("删除好友成功").build();
         }
