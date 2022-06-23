@@ -56,7 +56,7 @@
     <ChatView v-if="showChatView"></ChatView>
     <a-drawer
         v-model:visible="showDrawer"
-        :closable="false"
+        :closable="true"
         placement="right"
         :title="drawerTitle"
     >
@@ -76,7 +76,6 @@
             <template #icon>
               <QqOutlined/>
             </template>
-            <!--          <template #title>Item 1</template>-->
             <a-menu-item v-for="item in friends" :key="item" @click="handleDelete(item)">
               {{ item.userId }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态：{{ item.status }}
             </a-menu-item>

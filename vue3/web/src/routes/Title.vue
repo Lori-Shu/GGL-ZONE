@@ -9,6 +9,8 @@
     {{userId}}
       <a-button type="primary" shape="round" style="left: 100px" @click="logout">登出</a-button>
     </div>
+          &nbsp;
+      <a-button type="primary" style="left: 1100px" @click="siwtchMusicPane">打开音乐台</a-button>
   </div>
 </template>
 
@@ -64,22 +66,24 @@ export default {
     }
     message.warn("未登录用户无法登出")
   }
+  // let showMusicPane=computed(()=>state.showMusicPane)
+    const siwtchMusicPane=()=>{
+      store.dispatch("switchMusicPane")
+      console.log("switch -visiable")
+  }
 
     return {
       userId,
       avatar,
       // description,
-      logout
+      logout,
+      siwtchMusicPane
     }
   }
 }
 </script>
 
 <style scoped>
-#title {
-  /* height: 10%;
-  background-color: rosybrown; */
-}
 #userController{
   float: left;
 }

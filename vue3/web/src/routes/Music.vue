@@ -7,7 +7,7 @@
     <div id="selectArea">
       名称：
       <a-input v-model:value="selectParam.music" placeholder="music" style="width:20%"/>
-      musician：
+      musician:
       <a-input v-model:value="selectParam.musician" placeholder="musician" style="width:20%"/>
       专辑：
       <a-input-search
@@ -20,31 +20,21 @@
     </div>
     <br/>
     <MusicList></MusicList>
-    <div id="audioPlayer"></div>
-    <div id="audiodiv">
-      <span id="playing">正在播放：{{ now }}</span>
-      <audio id="audio" ref="audio" :src="src" autoplay controls
-             loop
-             preload="auto">该浏览器不支持audio属性
-      </audio>
-    </div>
+    <!-- <div id="audioPlayer"></div> -->
   </div>
 </template>
 
 <script>
 import MusicList from "@/routes/MusicList";
-import {nextTick, provide, reactive, ref} from "vue";
+import {nextTick, provide, reactive, ref,computed} from "vue";
 import axios from "axios";
+import store from "../store/index"
 
 
 export default {
   name: "Music",
   components: {MusicList},
   setup() {
-    const audio = ref()
-    nextTick(() => {
-      audio.value.volume = 0.2
-    })
     let data = ref()
     provide("musicData", data)
     let selectParam = reactive({music: '', musician: '', album: ''})
@@ -86,14 +76,9 @@ export default {
         alert(err)
       })
     }
-    
     return {
-      audio,
       selectParam,
       onSearch,
-      src,
-      now
-
     }
   }
 }

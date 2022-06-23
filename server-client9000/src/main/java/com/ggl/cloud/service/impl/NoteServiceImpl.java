@@ -1,24 +1,23 @@
 package com.ggl.cloud.service.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ggl.cloud.config.BlockHandlerClass;
 import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.entity.Note;
 import com.ggl.cloud.mapper.NoteMapper;
 import com.ggl.cloud.service.INoteService;
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -99,6 +98,7 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
         if(!StringUtils.isEmpty(note.getContent())){
             queryWrapper.like("content", note.getContent());
         }
+        queryWrapper.orderByDesc("update_time");
         long count = count(queryWrapper);
         page(page,queryWrapper); 
         log.warn(note.toString());

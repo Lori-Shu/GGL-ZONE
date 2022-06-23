@@ -17,7 +17,7 @@
         <td><textarea id="textarea" v-model="thisdata.content"></textarea></td>
       </tr>
       <tr>
-        <router-link to="/note">
+        <router-link to="/main/note">
           <td>
             <a-button type="primary" v-on:click="submitForm">提交新增</a-button>
           </td>
@@ -80,7 +80,7 @@ export default {
             (response) => {
               // console.log(thisdata.content)
               message.info(response.data.detail)
-              router.push("/main/note")
+              // router.push("/main/note")
 
               // console.log( response.data["result"])
               // console.log(responsedata)

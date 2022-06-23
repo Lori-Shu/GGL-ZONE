@@ -38,6 +38,8 @@ import {inject, nextTick,ref} from "vue";
 import axios from "axios";
 import {DeleteTwoTone,CloudDownloadOutlined} from "@ant-design/icons-vue";
 import myDownLoad from "@/downLoad";
+import { computed } from "@vue/reactivity";
+import store from "../store";
 
 export default {
   name: "MusicList",
@@ -99,12 +101,28 @@ export default {
         })
       
     }
-    let nowMusic = inject("nowMusic")
-    let src = inject("musicSrc")
+    let nowMusic = computed({
+      get:()=>{return store.state.nowMusic},
+      set:newVal=>{
+        store.dispatch("setnowMusic",newVal)
+      }
+    })
+    let src =  computed({
+      get:()=>{return store.state.musicSrc},
+      set:newVal=>{
+        store.dispatch("setMusicSrc",newVal)
+      }
+    })
     const changeMusic = item => {
       console.log(item.src)
-      nowMusic.value = item.music
-      src.value = item.src
+      store.dispatch("setNowMusic",item.musicName)
+      store.dispatch("setMusicSrc",item.src)
+      store.state.myAudio.load()
+      setTimeout(()=>{
+        store.state.myAudio.play()
+        console.log("等一会儿加载")
+        },100)
+      
     }
     const deleteMusic = music => {
       axios.post("/user/delete_music", {
@@ -127,7 +145,7 @@ export default {
       musicTotal,
       changeMusic,
       deleteMusic,
-      downloadMusic
+      downloadMusic,
     }
   }
 }

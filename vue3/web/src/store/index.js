@@ -7,7 +7,11 @@ const store = createStore({
                 userId:window.sessionStorage.getItem("userId")
             },
             showLogin:true,
-            existChat:new Map()
+            existChat:new Map(),
+            showMusicPane:false,
+            nowMusic:"",
+            musicSrc:"",
+            myAudio:new Audio()
         },
         // 修改变量（state不能直接赋值修改，只能通过mutations）
         // mutations的值由actions传入
@@ -28,6 +32,15 @@ const store = createStore({
             },
             addMessage(context ,newMessage){
                 context.commit("addMessage",newMessage)
+            },
+            switchMusicPane(context){
+                context.commit("switchMusicPane")
+            },
+            setNowMusic(context,newValue){
+                context.commit("setNowMusic",newValue)
+            },
+            setMusicSrc(context,newValue){
+                context.commit("setMusicSrc",newValue)
             }
         },
         mutations: {
@@ -53,6 +66,19 @@ const store = createStore({
             }
             console.log("target",newMessage.target)
             state.existChat.get(newMessage.from).push(newMessage)
+            },
+            switchMusicPane(state){
+                state.showMusicPane=!state.showMusicPane
+                console.log("mutations -switch visiable",state.showMusicPane)
+            },
+            setNowMusic(state,newValue){
+                state.nowMusic=newValue
+                console.log("setNowMusic",newValue)
+            },
+            setMusicSrc(state,newValue){
+                state.musicSrc=newValue
+                state.myAudio.src=newValue
+                console.log("setMusicSrc",newValue)
             }
         }
     })

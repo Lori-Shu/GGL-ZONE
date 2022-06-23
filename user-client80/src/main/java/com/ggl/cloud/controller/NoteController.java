@@ -11,15 +11,14 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.Resource;
 
-import com.ggl.cloud.entity.CommonResult;
-import com.ggl.cloud.entity.Note;
-import com.ggl.cloud.feignservice.ServerFeign;
-
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ggl.cloud.entity.CommonResult;
+import com.ggl.cloud.entity.Note;
+import com.ggl.cloud.feignservice.ServerFeign;
 
 import lombok.extern.slf4j.Slf4j;
 
