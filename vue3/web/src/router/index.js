@@ -76,7 +76,14 @@ const routes = [
                 content:UploadVideo
             },
             
-        },
+            },
+            {
+                path: "/main/play_video",
+                components: {
+                    content: PlayVideo
+                },
+
+            },
         {
             path:"/main/add_note",
             components:{

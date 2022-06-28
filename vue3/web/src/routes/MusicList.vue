@@ -7,7 +7,7 @@
             <a-list-item-meta :description="`musician:`+item.musician+`\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0`
         +`album:`+item.album">
               <template #title>
-                <a id="title" @click="changeMusic(item)">{{ item.musicName }}</a>
+                <a id="title" >{{ item.musicName }}</a>
               </template>
             </a-list-item-meta>
             <template #extra>
@@ -47,7 +47,7 @@ export default {
     DeleteTwoTone,CloudDownloadOutlined
   },
   setup() {
-    let data = inject("musicData")
+    let data = computed(()=>store.state.musicList)
     let selectParam = inject("musicSelectParam")
     let musicCurrent = inject("musicCurrent")
     let musicTotal = inject("musicTotal")
@@ -64,11 +64,11 @@ export default {
       }).then(response => {
         console.log(response.data)
         if (response.data.code===200) {
-          data.value = response.data.result
-          // console.log(data.value)
+          store.dispatch("setMusicList",response.data.result.list)
+          console.log(store.state.musicList)
           // console.log(response.data.result.pageList)
-          musicCurrent.value = 1
-          // musicTotal.value = response.data.result.total
+          // musicCurrent.value = 1
+          musicTotal.value = response.data.result.total
           // console.log(response.data.result.total)
         }
       })
@@ -76,7 +76,7 @@ export default {
 
     const onChange = pageNumber => {
       // console.log(props.selected)
-        axios.post("/user/select_page", {
+        axios.post("/user/music/select_page", {
           userId: userId.value,
           music: selectParam.music,
           musician: selectParam.musician,
@@ -87,16 +87,18 @@ export default {
             pageSize:5
           }
         }).then(response => {
-          data.value = response.data.result.pageList
-          // console.log(response.data.result.pageList)
-          // console.log(responsedata)
-          // musicTotal.value = response.data.result.total
-          // console.log(response.data.result.total)
-              musicCurrent.value = pageNumber
-              // console.log( response.data["result"])
-              // console.log(responsedata)
-            }
-        ).catch(err => {
+          if (response.data.code === 200) {
+            store.dispatch("setMusicList", response.data.result.list)
+            // console.log(response.data.result.pageList)
+            // console.log(responsedata)
+            musicTotal.value = response.data.result.total
+            // console.log(response.data.result.total)
+            // musicCurrent.value = pageNumber
+            // console.log( response.data["result"])
+            // console.log(responsedata)
+          }
+
+        }).catch(err => {
           alert(err)
         })
       
@@ -115,11 +117,13 @@ export default {
     })
     const changeMusic = item => {
       console.log(item.src)
-      store.dispatch("setNowMusic",item.musicName)
-      store.dispatch("setMusicSrc",item.src)
-      store.state.myAudio.load()
+      store.dispatch("setNowMusic",item)
+      store.dispatch("setMusicSrc", item.src)
+      store.dispatch("switchAudioPlaying",true)
+      let myAudio = store.state.myAudio
+      myAudio.load()
       setTimeout(()=>{
-        store.state.myAudio.play()
+        myAudio.play()
         console.log("等一会儿加载")
         },100)
       

@@ -105,10 +105,10 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
         // System.out.println(page.getRecords());
 
     //    log.info(splitPage.getPageList().toString());
-        if(page.getSize()>0){
+        if(page.getRecords().size()>0){
             log.warn(page.getRecords().toString());
             Map<String,Object> resultMap=new HashMap<>();
-            resultMap.put("total", (int)count);
+            resultMap.put("total", count);
             resultMap.put("list", page.getRecords());
             return CommonResult.builder().code(CommonResult.SUCCESS).detail("查询成功").result(resultMap).build();
         }

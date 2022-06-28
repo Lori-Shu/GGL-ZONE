@@ -56,7 +56,8 @@ public class MusicController {
     @PostMapping("select_page")
     public CommonResult selectPage(int pageNumber, int pageSize,@RequestBody Music music) {
 //        log.info(music);
-        ConcurrentHashMap<String,Object> map=new ConcurrentHashMap<>();
+ConcurrentHashMap<String, Object> map = new ConcurrentHashMap<>();
+        log.warn("pageSize" + pageNumber);
         log.warn("pageSize"+pageSize);
         map.put("pageNumber", pageNumber);
         map.put("pageSize", pageSize);

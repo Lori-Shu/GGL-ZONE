@@ -9,18 +9,20 @@
 
 <script>
 
-import {getCurrentInstance, ref} from "vue";
+import { ref } from "vue";
+import { router} from "../router/index"
 export default {
   name: "PlayVideo",
   setup() {
-    const instance = getCurrentInstance()
-    const _this = instance.appContext.config.globalProperties
-    console.log(_this.$route.query.videoSrc)
-    let src = ref(_this.$route.query.videoSrc)
+
+    console.log(router.currentRoute.value.query.videoSrc)
+    let src = ref(router.currentRoute.value.query.videoSrc)
     // console.log(src.value)
-    let playingVideo = ref(_this.$route.query.playingVideo)
-    let options=ref({
-      src:src.value,
+    let playingVideo = ref(router.currentRoute.value.query.playingVideo)
+    let options = ref({
+      width: "1280px",
+      height:"720px",
+      src: src.value,
       control:true
     })
     return {
@@ -33,12 +35,17 @@ export default {
 </script>
 
 <style scoped>
+
 #playVideo {
+  border: solid;
   text-align: center;
 }
 
 #video {
-  height: 720px;
-  width: 1280px;
+  border: solid;
+  position: relative;
+  left: 200px;
+  /* height: 720px;
+  width: 1280px; */
 }
 </style>

@@ -19,7 +19,9 @@ import {
     Descriptions,
     Tag,
     Divider,
-    Table
+    Table,
+    Progress,
+    Slider
 } from 'ant-design-vue'
 import {router} from "./router/index"
 import axios from "axios";
@@ -65,6 +67,8 @@ app.use(Layout)
 app.use(Tag)
 app.use(Divider)
 app.use(Table)
+app.use(Progress)
+app.use(Slider)
 
 
 

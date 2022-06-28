@@ -17,6 +17,9 @@ import com.ggl.cloud.entity.Video;
 import com.ggl.cloud.mapper.VideoMapper;
 import com.ggl.cloud.service.IVideoService;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -31,7 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 public class VideoServiceImpl extends ServiceImpl<VideoMapper,Video> implements IVideoService{
     @Override
-    @CachePut(value = "uploadVideo",key = "#video.userId")
+    @CacheEvict(value = "selectPageVideo",allEntries=true)
     @SentinelResource(value = "uploadVideo",blockHandler = "defaultBlock",blockHandlerClass = {BlockHandlerClass.class})
     public CommonResult uploadVideo(Video video){
             if(save(video)){
@@ -40,7 +43,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper,Video> implements 
             throw new RuntimeException("保存视频记录出现问题");
     }
         @Override
-        @CacheEvict(value = "selectPageVideo",key = "#video.userId")
+        @CacheEvict(value = "selectPageVideo",allEntries = true)
         @SentinelResource(value = "deleteVideo",blockHandler = "defaultBlock",blockHandlerClass = {BlockHandlerClass.class})
     public CommonResult deleteVideo(Video video) {
         if(removeById(video)){
@@ -49,7 +52,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper,Video> implements 
         throw new RuntimeException("删除视频记录出现异常！");
     }
         @Override
-        @Cacheable(value = "selectPageVideo",key = "#video.userId")
+        @Cacheable(value = "selectPageVideo",key = "T(String).valueOf(#pageNumber).concat('-').concat(#pageSize).concat('-').concat(#video.toString())")
         public CommonResult selectVideoPage(int pageNumber, int pageSize, Video video) {
             // 分页查询视频信息
             Page<Video> videoPage=new Page<>(pageNumber,pageSize);
@@ -60,15 +63,20 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper,Video> implements 
         if(!StringUtils.isEmpty(video.getVideoName())){
             queryWrapper.like("video_name", video.getVideoName());
         }
-        if(!StringUtils.isEmpty(video.getVideoAuthor())){
+        if (!StringUtils.isEmpty(video.getVideoAuthor())) {
             queryWrapper.like("video_author", video.getVideoAuthor());
         }
+        long count = count(queryWrapper);
         page(videoPage, queryWrapper);
-        if(videoPage.getRecords().size()>0){
+        
+        if (videoPage.getRecords().size() > 0) {
+            Map<String, Object> res = new HashMap<>();
+            res.put("list", videoPage.getRecords());
+            res.put("total", count);
             return CommonResult.builder()
                 .code(CommonResult.SUCCESS)
                 .detail("查询视频页面成功")
-                .result(videoPage.getRecords())
+                .result(res)
                 .build();
         }
         throw new RuntimeException("查询视频页面出现问题，结果为空！");

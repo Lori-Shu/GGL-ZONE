@@ -44,11 +44,12 @@
   </div>
 </template>
 <script>
-import {getCurrentInstance, nextTick, ref} from "vue";
+import { nextTick, ref} from "vue";
 import axios from "axios";
 import {CaretRightOutlined, DeleteTwoTone} from "@ant-design/icons-vue";
 import "animate.css"
-import {message} from "ant-design-vue";
+import { message } from "ant-design-vue";
+import { router } from "../router/index"
 
 export default {
   name: 'Video',
@@ -74,27 +75,26 @@ export default {
         console.log(response.data)
         if(response.data.code===200){
           console.log(response.data.result)
-        data.value = response.data.result
-        // total.value = response.data.result.total
-        current.value = 1
+        data.value = response.data.result.list
+        total.value = response.data.result.total
         }
       }).catch(err => {
         alert(err)
       })
     })
     const onSearch = () => {
-      axios.post("/user/search_video",{
+      axios.post("/user/video/select_page",{
         userId: window.sessionStorage.getItem("userId"),
-          videoName: selectName.value,
+        videoName: selectName.value,
       }, {
         params: {
           pageNumber: 1,
           pageSize:5
         }
       }).then(response => {
-        data.value = response.data.result
-        // total.value = response.data.result.total
-        current.value = 1
+        data.value = response.data.result.list
+        total.value = response.data.result.total
+        // current.value = 1
       }).catch(err => {
         alert(err)
       })
@@ -107,16 +107,15 @@ export default {
           pageNumber
         }
       }).then(response => {
-        data.value = response.data.result
-        // total.value = response.data.result.total
-        current.value = pageNumber
+        data.value = response.data.result.list
+        total.value = response.data.result.total
+        // current.value = pageNumber
       }).catch(err => {
         alert(err)
       })
     }
-    const instance = getCurrentInstance()
     const playVideo = video => {
-      instance.proxy.$router.push({path: '/play_video', query: {playingVideo: video.videoName, videoSrc: video.src}})
+      router.push({path: '/main/play_video', query: {playingVideo: video.videoName, videoSrc: video.src}})
     }
     const customStyle =
         'background: #f7f7f7;border-radius: 4px;margin-bottom: 24px;border: 0;overflow: hidden';

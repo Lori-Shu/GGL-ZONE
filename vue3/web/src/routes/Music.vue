@@ -35,8 +35,7 @@ export default {
   name: "Music",
   components: {MusicList},
   setup() {
-    let data = ref()
-    provide("musicData", data)
+    let data = computed(()=>store.state.musicList)
     let selectParam = reactive({music: '', musician: '', album: ''})
     provide("musicSelectParam", selectParam)
     let current = ref(1)
@@ -63,8 +62,8 @@ export default {
         }
       }).then(response => {
         // console.log(listdata)
-        data.value = response.data.result
-        current.value = 1
+        store.dispatch("setMusicList",response.data.result.list)
+        // current.value = 1
         if (selectParam.music === "" && selectParam.musician === "" && selectParam.album === "") {
           selected.value = "0"
           alert("请输入查询参数，已查询所有")
