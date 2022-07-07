@@ -3,15 +3,14 @@ package com.ggl.cloud.controller;
 
 import javax.annotation.Resource;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ggl.cloud.entity.CommonResult;
-import com.ggl.cloud.entity.Friend;
-import com.ggl.cloud.feignservice.ServerFeign;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ggl.cloud.entity.CommonResult;
+import com.ggl.cloud.entity.Friend;
+import com.ggl.cloud.feignservice.ServerFeign;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 public class ChatController {
     @Resource
     ServerFeign serverFeign;
-    private ObjectMapper objectMapper=new ObjectMapper();
     @PostMapping("/add")
     public CommonResult addFriend(@RequestBody Friend friend) {
        return serverFeign.addFriend(friend);

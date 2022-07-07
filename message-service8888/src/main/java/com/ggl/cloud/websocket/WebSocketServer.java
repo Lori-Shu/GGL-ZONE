@@ -71,7 +71,7 @@ public class WebSocketServer {
             }
             refreshStatus(commonMessage.getFrom(), session);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
+            // 收到消息方法执行异常
             log.warn("接收信息异常");
             e.printStackTrace();
         }
@@ -120,7 +120,7 @@ public class WebSocketServer {
         try {
             session.getBasicRemote().sendText(objectMapper.writeValueAsString(message));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+            // 发送消息过程的异常处理
             log.warn("发送信息异常");
             e.printStackTrace();
         }

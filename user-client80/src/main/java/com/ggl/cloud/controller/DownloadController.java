@@ -5,18 +5,18 @@ import java.io.File;
 
 import javax.annotation.Resource;
 
-import com.ggl.cloud.entity.Music;
-import com.ggl.cloud.entity.Video;
-import com.ggl.cloud.feignservice.ResourceFeign;
-
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import com.ggl.cloud.entity.Music;
+import com.ggl.cloud.entity.Video;
+import com.ggl.cloud.feignservice.ResourceFeign;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,12 +24,12 @@ import lombok.extern.slf4j.Slf4j;
  *@Author Lori Shu
  *@Date 2022/4/23
  */
-@RestController
+@Controller
 @RequestMapping("user/download")
 @Slf4j
 public class DownloadController {
     @Resource
-    ResourceFeign service;
+    private    ResourceFeign service;
     @PostMapping("music")
     public ResponseEntity<FileSystemResource> downloadMusic(@RequestBody Music music){
         // log.info(src);

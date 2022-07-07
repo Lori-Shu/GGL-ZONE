@@ -2,33 +2,12 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch CodeGenerator",
-            "request": "launch",
-            "mainClass": "CodeGenerator",
-            "projectName": "message-service8888"
-        },
-        {
-            "type": "java",
-            "name": "Launch CodeGenerator",
-            "request": "launch",
-            "mainClass": "com.ggl.CodeGenerator",
-            "projectName": "statistics8988"
-        },
-        {
-            "type": "java",
             "name": "Launch ResourceClient9992",
             "request": "launch",
             "console": "internalConsole",
+            "vmArgs": "-Xmx5G",
             "mainClass": "com.ggl.cloud.ResourceClient9992",
             "projectName": "resource-client9992"
-        },
-        {
-            "type": "java",
-            "name": "Launch ServerClient9000",
-            "request": "launch",
-            "console": "internalConsole",
-            "mainClass": "com.ggl.cloud.ServerClient9000",
-            "projectName": "server-client9000"
         },
         {
             "type": "java",
@@ -38,7 +17,7 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.ggl.cloud.UserClient80",
             "projectName": "user-client80",
-            "args": "",
+            "vmArgs": "-Xmx5G",
             "envFile": "${workspaceFolder}/.env"
         },
         {
@@ -72,6 +51,17 @@
             "mainClass": "com.ggl.cloud.MessageService8888",
             "projectName": "message-service8888",
             "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ServerClient9000<server-client9000>",
+            "request": "launch",
+            "console": "internalConsole",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ggl.cloud.ServerClient9000",
+            "projectName": "server-client9000",
+            "vmArgs": "-Xmx5G",
             "envFile": "${workspaceFolder}/.env"
         }
     ]

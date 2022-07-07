@@ -2,8 +2,6 @@ server:
   port: 9000
   # servlet:
   #   context-path: /ServerClient9000
-  
-
 spring:
   application:
     name: ServerClient9000
@@ -17,7 +15,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: localhost:8848     
     sentinel:
       transport:
         port: 8719
@@ -121,5 +119,24 @@ logging:
       # 如果是压缩包，里面会多一个名log/ota.2021-11-05.0的日志文件
       # 如下面的例子，打包之后为: log/2021-11/ota.2020-11-5.0.log，这是一个日志文件
       file-name-pattern: log/%d{yyyy-MM}/ota.%d{yyyy-MM-dd}.%i.log
+# seata:
+#   tx-service-group: my_test_tx_group
+#   config:
+#     type: nacos
+#     nacos:
+#       namespace: public
+#       server-addr: 127.0.0.1:8848
+#       group: SEATA_GROUP
+#       username: nacos
+#       password: nacos
+#   registry:
+#     type: nacos
+#     nacos:
+#       application: SeataServer
+#       server-addr: 127.0.0.1:8848
+#       group : SEATA_GROUP
+#       namespace: public
+#       username: nacos
+#       password: nacos
       
       

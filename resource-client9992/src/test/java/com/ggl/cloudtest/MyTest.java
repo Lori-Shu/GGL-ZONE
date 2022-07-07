@@ -5,7 +5,7 @@
 *@Author:Lori Shu
 *
 */
-package com.ggl.cloud;
+package com.ggl.cloudtest;
 
 import org.junit.jupiter.api.Test;
 

@@ -53,6 +53,7 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/music/**");
         web.ignoring().antMatchers("/video/**");
+        web.ignoring().antMatchers("/avatar/**");
     }
 
     @Bean

@@ -1,10 +1,14 @@
 import { createStore } from "vuex";
+import axios from "axios";
 
 const store = createStore({
     // 声明变量
     state: {
         userDetail: {
-            userId: window.sessionStorage.getItem("userId")
+            userId: window.sessionStorage.getItem("userId"),
+            avatar: "",
+            createTime: "",
+            auth:""
         },
         showLogin: true,
         existChat: new Map(),
@@ -55,6 +59,19 @@ const store = createStore({
         },
         setShowVolumn(context, newValue) {
             context.commit("setShowVolumn", newValue)
+        },
+        getUserDetail(context){
+            axios.post("user/getUserDetail", {
+                userId: store.state.userDetail.userId,
+            }).then(response => {
+                if (response.data.code === 200) {
+                    context.dispatch("setUserDetail", response.data.result)
+                    return
+                }
+                message.error("获取用户信息失败")
+            }).catch(err => {
+                message.error("网络请求出错")
+            })
         }
     },
     mutations: {

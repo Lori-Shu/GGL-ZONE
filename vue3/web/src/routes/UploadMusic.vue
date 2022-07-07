@@ -1,25 +1,20 @@
 <template>
   <div>
     <label class="label">歌曲名：</label>
-    <a-input v-model:value="music" class="input" placeholder="music"/>
-    <br/>
+    <a-input v-model:value="music" class="input" placeholder="music" />
+    <br />
     <label class="label">musician:</label>
-    <a-input v-model:value="musician" class="input" placeholder="musician此项为必填项"/>
-    <br/>
+    <a-input v-model:value="musician" class="input" placeholder="musician此项为必填项" />
+    <br />
     <label class="label">专辑:</label>
-    <a-input v-model:value="album" class="input" placeholder="album"/>
-    <br/>
+    <a-input v-model:value="album" class="input" placeholder="album" />
+    <br />
     请先填写歌曲信息再点击上传
-    <WarningTwoTone/>
+    <WarningTwoTone two-tone-color="#eb2f96" style="fontSize:30px;" />
   </div>
-  <a-upload
-      :customRequest="customRequest"
-      :multiple="false"
-      name="file"
-      @change="handleChange"
-  >
+  <a-upload :customRequest="customRequest" :multiple="false" name="file" @change="handleChange" accept="audio/*">
     <a-button>
-      <UploadOutlined/>
+      <UploadOutlined />
       点这里上传
     </a-button>
   </a-upload>
@@ -54,17 +49,19 @@ export default {
       // 后端需要接受的参数是 formData数据，
       const form = new FormData()
 
-      form.append('file', file.file)
+      form.append('uploadMusic', file.file)
       // uploadFile 我自己的接口
-      axios.post("/user/upload_music", form, {
+      axios.post("/user/music/upload", form, {
         params: {
+        music: {
           userId: window.sessionStorage.getItem("userId"),
-          music: music.value,
+          musicName: music.value,
           musician: musician.value,
           album: album.value
+      }
         }
       }).then(response => {
-        if (response.data.detail === "上传成功") {
+        if (response.data.code === 200) {
           // console.log(form)
           // 调用组件内方法, 设置为成功状态
           file.onSuccess(response, file.file)

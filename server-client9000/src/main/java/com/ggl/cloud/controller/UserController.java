@@ -35,7 +35,16 @@ public class UserController {
     }
 
     @PostMapping("getStatistics")
-        public CommonResult getStatistics(){
-                return service.getStatistics();
-        }
+    public CommonResult getStatistics() {
+        return service.getStatistics();
+    }
+    @PostMapping("getUserDetail")
+    public CommonResult getUserDetail(@RequestBody User user) {
+        return service.getUserDetail(user);
+    }
+    @PostMapping("uploadAvatar")
+    public CommonResult uploadAvatar(@RequestBody User user) {
+        return service.uploadAvatar(user);
+        
+    }
 }

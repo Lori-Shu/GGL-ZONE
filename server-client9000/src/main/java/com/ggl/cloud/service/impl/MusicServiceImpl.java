@@ -2,7 +2,7 @@
  * @Author: Lori Shu
  * @Date: 2022-05-07 14:56:57
  * @LastEditors: Lori Shu
- * @LastEditTime: 2022-06-28 14:29:48
+ * @LastEditTime: 2022-07-06 13:17:12
  */
 /*
 *
@@ -21,6 +21,12 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.Resource;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -30,13 +36,6 @@ import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.entity.Music;
 import com.ggl.cloud.mapper.MusicMapper;
 import com.ggl.cloud.service.IMusicService;
-
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -48,13 +47,14 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
     MusicMapper mapper;
 
     @Override
-        @CacheEvict(value = "musicSelectPage",allEntries = true)
-        @SentinelResource(value = "uploadMusic",blockHandler = "defaultBlock",blockHandlerClass = {BlockHandlerClass.class})
-    public CommonResult uploadMusic(Music music){
-            if(save(music)){
-                return CommonResult.builder().code(CommonResult.SUCCESS).detail("上传音乐成功").build();
-            }
-            throw new RuntimeException("保存音乐记录出现了问题！");
+    @CacheEvict(value = "musicSelectPage", allEntries = true)
+    @SentinelResource(value = "uploadMusic", blockHandler = "defaultBlock", blockHandlerClass = {
+            BlockHandlerClass.class })
+    public CommonResult uploadMusic(Music music) {
+        if (save(music)) {
+            return CommonResult.builder().code(CommonResult.SUCCESS).detail("上传音乐成功").build();
+        }
+        throw new RuntimeException("保存音乐记录出现了问题！");
     }
 
     @Override
@@ -120,6 +120,15 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
         resultMap.put("musicUploadCount", uploadCount);
         resultMap.put("musicDeleteCount", deleteCount);
         return CommonResult.builder().code(CommonResult.SUCCESS).detail("统计成功").result(resultMap).build();
+    }
+
+    @Override
+    public CommonResult plusDownload(Music music) {
+        // 增加统计音乐资源下载次数
+        Music mc = getById(music.getId());
+        mc.setDownloadTimes(mc.getDownloadTimes() + 1);
+        updateById(mc);
+        return CommonResult.builder().code(CommonResult.SUCCESS).build();
     }
 
 }

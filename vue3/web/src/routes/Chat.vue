@@ -1,23 +1,18 @@
 <template>
   <div id="chat" class="animate__animated animate__bounceInLeft">
     <div class="menu">
-      <a-menu
-          v-model:openKeys="openKeys"
-          v-model:selectedKeys="selectedKeys"
-          mode="inline"
-          style="width: 300px"
-          
-      >
-        <a-sub-menu key="myFriend" >
+      <a-menu v-model:openKeys="openKeys" v-model:selectedKeys="selectedKeys" mode="inline" style="width: 300px">
+        <a-sub-menu key="myFriend">
           <template #icon>
-            <MailOutlined/>
+            <MailOutlined />
           </template>
           <template #title>我的站友&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a-button type="primary" @click="refresh">刷新状态</a-button>
-            </template>
+
+          </template>
+          <a-button type="primary" @click="refresh">刷新状态</a-button>
           <a-menu-item-group key="g1" title="全部人">
             <template #icon>
-              <QqOutlined/>
+              <QqOutlined />
             </template>
             <!--          <template #title>Item 1</template>-->
             <a-menu-item v-for="item in friends" :key="item" @click="handleClick(item)">
@@ -31,7 +26,7 @@
         </a-sub-menu>
         <a-sub-menu key="sub2">
           <template #icon>
-            <AppstoreOutlined/>
+            <AppstoreOutlined />
           </template>
           <template #title>好友管理</template>
           <a-menu-item key="add" @click="showDrawer=!showDrawer">添加好友</a-menu-item>
@@ -54,32 +49,18 @@
       </a-menu>
     </div>
     <ChatView v-if="showChatView"></ChatView>
-    <a-drawer
-        v-model:visible="showDrawer"
-        :closable="true"
-        placement="right"
-        :title="drawerTitle"
-    >
-      <a-input-search
-          v-model:value="searchValue"
-          placeholder="请输入要查询用户的id"
-          style="width: 200px"
-          @search="onSearch"
-          v-if="showSearch"
-      />
-      <a-menu
-          v-if="showFriendList"
-          mode="inline"
-          style="width: 300px"
-      >
-      <a-menu-item-group key="g1" title="全部人">
-            <template #icon>
-              <QqOutlined/>
-            </template>
-            <a-menu-item v-for="item in friends" :key="item" @click="handleDelete(item)">
-              {{ item.userId }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态：{{ item.status }}
-            </a-menu-item>
-          </a-menu-item-group>
+    <a-drawer v-model:visible="showDrawer" :closable="true" placement="right" :title="drawerTitle">
+      <a-input-search v-model:value="searchValue" placeholder="请输入要查询用户的id" style="width: 200px" @search="onSearch"
+        v-if="showSearch" />
+      <a-menu v-if="showFriendList" mode="inline" style="width: 300px">
+        <a-menu-item-group key="g1" title="全部人">
+          <template #icon>
+            <QqOutlined />
+          </template>
+          <a-menu-item v-for="item in friends" :key="item" @click="handleDelete(item)">
+            {{ item.userId }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态：{{ item.status }}
+          </a-menu-item>
+        </a-menu-item-group>
       </a-menu>
       <a-modal v-model:visible="showConfirm" :title="myConfirmTitle" @ok="handleOk">
         <p>{{ friendMsg }}</p>

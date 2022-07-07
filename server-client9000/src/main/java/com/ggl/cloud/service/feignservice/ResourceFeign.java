@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("ResourceClient9992")
 public interface ResourceFeign {
     @PostMapping(value = "resource/uploadMusic")
-    CommonResult uploadMusic(File uploadMusic,@RequestParam("music") String music);
+    CommonResult uploadMusic(byte[] uploadMusic,@RequestParam("music") String music,
+            @RequestParam("suffix") String suffix);
     @PostMapping("resource/deleteMusic")
     CommonResult deleteMusic(Music music);
     @PostMapping(value = "resource/uploadVideo")
-    CommonResult uploadVideo( File uploadVideo,@RequestParam("video") String video);
+    CommonResult uploadVideo(byte[] uploadVideo,@RequestParam("video") String video,
+            @RequestParam("suffix") String suffix);
     @PostMapping("resource/deleteVideo")
     CommonResult deleteVideo(Video video);
 

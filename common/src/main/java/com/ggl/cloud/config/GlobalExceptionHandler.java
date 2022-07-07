@@ -21,7 +21,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public CommonResult error(Exception e){
-        e.printStackTrace();
+        // e.printStackTrace();
         log.error(e.getMessage());
         return CommonResult.builder().code(CommonResult.ERROR).detail(e.getMessage()).build();
     }

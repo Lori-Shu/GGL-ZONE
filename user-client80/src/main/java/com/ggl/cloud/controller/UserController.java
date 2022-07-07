@@ -2,16 +2,25 @@ package com.ggl.cloud.controller;
 
 
 
-import javax.annotation.Resource;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.ggl.cloud.entity.CommonResult;
-import com.ggl.cloud.entity.User;
-import com.ggl.cloud.feignservice.ServerFeign;
+import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ggl.cloud.entity.CommonResult;
+import com.ggl.cloud.entity.User;
+import com.ggl.cloud.feignservice.ResourceFeign;
+import com.ggl.cloud.feignservice.ServerFeign;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +30,12 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
     @Resource
     private ServerFeign service;
+
+    @Resource
+    private ResourceFeign resourceFeign;
+
+    @Resource
+    private ObjectMapper objectMapper;
     @PostMapping("registry")
     public CommonResult registry(@RequestBody User user) {
         log.warn(user.toString());
@@ -33,7 +48,20 @@ public class UserController {
 
     }
     @PostMapping("update_user")
-    public CommonResult updateUser(@RequestBody User user){
+    public CommonResult updateUser(@RequestBody User user) {
         return service.update(user);
+    }
+    @PostMapping("getUserDetail")
+    public CommonResult getUserDetail(@RequestBody User user) {
+        return service.getUserDetail(user);
+    }
+    @PostMapping("uploadAvatar")
+    public CommonResult uploadAvatar(MultipartFile avatar, @RequestParam("user") String user) throws IOException  {
+        User readUser = objectMapper.readValue(user, User.class);
+        log.warn(avatar.getOriginalFilename());
+        String originalFilename = avatar.getOriginalFilename();
+        int indexOf = originalFilename.lastIndexOf(".");
+        String suffix = originalFilename.substring(indexOf);
+        return resourceFeign.uploadAvatar(avatar.getBytes(), readUser.getUserId(),suffix);
     }
 }

@@ -30,7 +30,7 @@ public class StatisticsServiceImpl extends ServiceImpl<StatisticsMapper, Statist
 
     @Override
     public CommonResult insertStatistics(Map<String, Integer> result) {
-        // TODO Auto-generated method stub
+        // 插入统计数据方法
         Statistics statistics = new Statistics();
         // log.warn("得到的统计结果---" + result.get("musicUploadCount"));
         statistics.setMusicUploadCount(result.get("musicUploadCount"));
@@ -44,7 +44,7 @@ public class StatisticsServiceImpl extends ServiceImpl<StatisticsMapper, Statist
 
     @Override
     public CommonResult selectPage(int pageNumber, int pageSize, String from,String to) {
-        // TODO Auto-generated method stub
+        // 分页查询统计数据方法
         int startIndex=(pageNumber-1)*pageSize+1;
         List<Statistics> resultList=mapper.mySelectPage(startIndex,pageSize,from,to);
         return CommonResult.builder().code(200).detail("查询统计数据成功").result(resultList).build();

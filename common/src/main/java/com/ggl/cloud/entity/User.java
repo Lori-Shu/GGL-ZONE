@@ -28,21 +28,22 @@ import io.swagger.annotations.ApiModel;
 @ApiModel(value = "User对象", description = "用户对象")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
-    @TableId(value="id",type =IdType.ASSIGN_UUID)
+    @TableId(value = "id", type = IdType.ASSIGN_UUID)
     private String id;
     private String userId;
     private String password;
     private String auth;
-    @TableField(fill=FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-	@JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime createTime;
-    @TableField(fill=FieldFill.INSERT_UPDATE)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-	@JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime updateTime;
     @TableLogic
     private Boolean deleted;
     @Version
     private Integer version;
+    private String avatar;
 }

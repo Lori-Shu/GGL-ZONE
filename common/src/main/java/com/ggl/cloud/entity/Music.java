@@ -35,6 +35,7 @@ public class Music implements Serializable {
     private String storePath;
     private String musician;
     private String album;
+    private Integer downloadTimes;
     @TableField(fill=FieldFill.INSERT)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	@JsonSerialize(using = LocalDateTimeSerializer.class)

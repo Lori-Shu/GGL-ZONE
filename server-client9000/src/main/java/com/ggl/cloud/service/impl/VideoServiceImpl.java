@@ -7,6 +7,15 @@
 */
 package com.ggl.cloud.service.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -16,16 +25,6 @@ import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.entity.Video;
 import com.ggl.cloud.mapper.VideoMapper;
 import com.ggl.cloud.service.IVideoService;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,7 +37,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper,Video> implements 
     @SentinelResource(value = "uploadVideo",blockHandler = "defaultBlock",blockHandlerClass = {BlockHandlerClass.class})
     public CommonResult uploadVideo(Video video){
             if(save(video)){
-                return CommonResult.builder().code(CommonResult.SUCCESS).detail("上传视频成功！").build();
+                return CommonResult.builder().code(CommonResult.SUCCESS).detail("上传视频成功").build();
             }
             throw new RuntimeException("保存视频记录出现问题");
     }

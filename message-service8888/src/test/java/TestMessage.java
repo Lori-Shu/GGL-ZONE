@@ -16,7 +16,7 @@
 // public class TestMessage {
 //     @Test
 //     public void  registy() {
-//         // TODO Auto-generated method stub
+// 
 //             // java.util.List<String> args = java.util.Arrays.asList(args_);
 //             com.aliyun.dysmsapi20170525.Client client=null;
 //             SendSmsRequest sendSmsRequest=null;

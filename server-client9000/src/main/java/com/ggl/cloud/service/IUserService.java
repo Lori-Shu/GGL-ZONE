@@ -17,5 +17,7 @@ public interface IUserService extends IService<User>{
     CommonResult updateUser(User user);
     User selectUser(User user);
     CommonResult getStatistics();
+    CommonResult getUserDetail(User user);
+    CommonResult uploadAvatar(User user);
     
 }

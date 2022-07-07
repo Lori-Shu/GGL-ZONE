@@ -40,6 +40,7 @@ import {DeleteTwoTone,CloudDownloadOutlined} from "@ant-design/icons-vue";
 import myDownLoad from "@/downLoad";
 import { computed } from "@vue/reactivity";
 import store from "../store";
+import { message } from "ant-design-vue";
 
 export default {
   name: "MusicList",
@@ -129,18 +130,20 @@ export default {
       
     }
     const deleteMusic = music => {
-      axios.post("/user/delete_music", {
+      axios.post("/user/music/delete", 
         music
-      }).then(response => {
-        if (response.data.detail === "删除成功") {
-          alert("删除成功")
+      ).then(response => {
+        if (response.data.code === 200) {
+          if (response.data.detail === "删除音乐成功") {
+            message.info("删除音乐成功")
+          }
         }
       }).catch(err => {
         alert(err)
       })
     }
     const downloadMusic= item=>{
-      myDownLoad(item)
+      myDownLoad("user/download/music",item)
     }
     return {
       data,

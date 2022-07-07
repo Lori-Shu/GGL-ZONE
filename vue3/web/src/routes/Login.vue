@@ -30,19 +30,8 @@ export default {
     
     // const ctx = instance.appContext
 
-    const getUserDetail=()=>{
-      axios.post("user/getUserDetail",{
-        usrId:store.state.userDetail.userId,
-      }).then(response=>{
-        if(response.data.code===200){
-          store.dispatch("setUserDetail",response.data.result)
-          return
-        }
-        message.error("获取用户信息失败")
-      }).catch(err=>{
-        message.error("网络请求出错")
-      })
-    }
+   
+    
     const login = () => {
         // router.push("/main")
       axios.post("server/login", {
@@ -54,7 +43,8 @@ export default {
           window.sessionStorage.setItem("token", response.headers.token)
           window.sessionStorage.setItem("authorized", "1")
           window.sessionStorage.setItem("userId", userId.value)
-          store.dispatch("setUserId",userId.value)
+          store.dispatch("setUserId", userId.value)
+          store.dispatch("getUserDetail")
           // console.log(window.sessionStorage.getItem("authorized"))
           // console.log("view---",_this.$route.authorized === "1")
           message.info("登录成功！")

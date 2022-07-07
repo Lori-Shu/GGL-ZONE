@@ -32,19 +32,19 @@ public class MusicController {
         ObjectMapper om=new ObjectMapper();
 
     @PostMapping("upload")
-    public CommonResult uploadmusic(@RequestBody File uploadMusic, @RequestParam("music") String music) throws JsonMappingException, JsonProcessingException{
-            CommonResult result=feign.uploadMusic(uploadMusic, music);
+    public CommonResult uploadmusic(@RequestBody byte[] uploadMusic,String music,String suffix) throws JsonMappingException, JsonProcessingException{
+            CommonResult result=feign.uploadMusic(uploadMusic, music,suffix);
             if(result.getCode()==CommonResult.SUCCESS){
-                Object musicObject=result.getResult();
-                Music resolveMusic=om.readValue(om.writeValueAsString(musicObject),Music.class);
-                log.warn(resolveMusic.toString());
-            return service.uploadMusic(resolveMusic);
+                    Music resolvedMusic = om.convertValue(result.getResult(), Music.class);
+                log.warn(resolvedMusic.toString());
+            return service.uploadMusic(resolvedMusic);
         }
         throw new RuntimeException("储存音乐发生异常");
     }
 
         @PostMapping("delete")
         public CommonResult delete(@RequestBody Music music) {
+                log.warn(music.toString());
                 CommonResult result=feign.deleteMusic(music);
                 if(result.getCode()==CommonResult.SUCCESS){
                 return service.deleteMusic(music);
@@ -65,7 +65,11 @@ public class MusicController {
                 return service.selectMusicPage(pageNumber, pageSize, music);
         }
         @PostMapping("getStatistics")
-        public CommonResult getStatistics(){
+        public CommonResult getStatistics() {
                 return service.getStatistics();
+        }
+        @PostMapping("plusDownload")
+        public CommonResult plusDownload(@RequestBody Music music) {
+                return service.plusDownload(music);
         }
 }

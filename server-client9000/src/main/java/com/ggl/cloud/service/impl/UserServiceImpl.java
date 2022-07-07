@@ -22,11 +22,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+@Transactional
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements  IUserService,UserDetailsService {
     @Resource
     private PasswordEncoder passwordEncoder;
@@ -119,5 +121,32 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements  I
         Map<String,Integer> resultMap=new ConcurrentHashMap<>();
         resultMap.put("userRegistryCount", registryCount);
         return CommonResult.builder().code(CommonResult.SUCCESS).detail("统计成功").result(resultMap).build();
+    }
+
+    @Override
+    public CommonResult getUserDetail(User user) {
+        // 查询用户信息方法
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", user.getUserId());
+        User one = getOne(queryWrapper);
+        // 去掉敏感内容
+        one.setPassword("");
+        one.setUpdateTime(null);
+        log.warn("查询到的用户id:" + one.getId());
+        return CommonResult.builder().code(CommonResult.SUCCESS).detail("查询用户信息成功").result(one).build();
+    }
+
+    @Override
+    public CommonResult uploadAvatar(User user) {
+        //更新数据库里的头像src(根据用户id)
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", user.getUserId());
+        User one = getOne(queryWrapper);
+        one.setAvatar(user.getAvatar());
+        boolean res = updateById(one);
+        if(res){
+            return CommonResult.builder().code(CommonResult.SUCCESS).detail("头像上传成功").build();
+        }
+        throw new RuntimeException("数据库修改出现异常");
     }
 }

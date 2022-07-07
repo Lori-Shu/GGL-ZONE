@@ -18,6 +18,7 @@
       name="file"
       @change="handleChange"
       :beforeUpload="file=>beforeUpload(file)"
+      accept="video/*"
   >
     <a-button>
       <UploadOutlined/>
@@ -50,7 +51,7 @@ export default {
     let videoName = ref("")
     let videoAuthor = ref("")
     let introduction = ref("")
-    let url = "/server/uploadVideo"
+    let url = "/user/video/upload"
     const customRequest = file => {
       // file 是上传的文件 其内容会在放在下面截图中
       // 后端需要接受的参数是 formData数据，
@@ -60,25 +61,28 @@ export default {
       //   return
       // }
       const form = new FormData()
-
-      form.append('file', file.file)
+      form.append('uploadVideo', file.file)
       // uploadFile 我自己的接口
       axios.post(url, form, {
         params: {
+          video:{
           userId: window.sessionStorage.getItem("userId"),
           videoName: videoName.value,
           videoAuthor: videoAuthor.value,
-          introduction: introduction.value
+            introduction: introduction.value
+          }
         }
       }).then(response => {
-        if (response.data.detail === "上传成功") {
-          // console.log(form)
-          // 调用组件内方法, 设置为成功状态
-          file.onSuccess(response, file.file)
-          file.status = 'done'
-        } else {
-          file.onError()
-          file.status = 'error'
+        if (response.data.code === 200) {
+          if (response.data.detail === "上传视频成功") {
+            // console.log(form)
+            // 调用组件内方法, 设置为成功状态
+            file.onSuccess(response, file.file)
+            file.status = 'done'
+          } else {
+            file.onError()
+            file.status = 'error'
+          }
         }
       })
     }

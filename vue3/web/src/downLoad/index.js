@@ -1,16 +1,13 @@
 import axios from "axios";
 import {message} from "ant-design-vue";
 
-export default function myDownLoad(item){
-    let formData=new FormData()
-    formData.append("src",item.src)
-    axios.post("user/download", formData,
+export default function myDownLoad(requestUrl,item){
+    axios.post(requestUrl, item,
         {
         responseType:"blob"
     }).then(response=>{
-
         let eleLink = document.createElement('a');
-        eleLink.download = item.music+".flac";
+        eleLink.download = item.musicName+".flac";
         eleLink.style.display = 'none';
         // 字符内容转变成blob地址
         let blob = new Blob([response.data]);

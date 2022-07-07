@@ -35,14 +35,15 @@ public interface ServerFeign {
     @PostMapping("server/note/selectPage")
     CommonResult selectPageNote(Map<String,Object> notePageMap);
     @PostMapping("server/music/upload")
-    CommonResult uploadmusic(File uploadMusic,@RequestParam("music") String music);
+    CommonResult uploadmusic(byte[] uploadMusic,@RequestParam("music") String music,
+            @RequestParam("suffix") String suffix);
     @PostMapping("server/music/delete")
     CommonResult delete(Music music);
 
     @PostMapping("server/music/selectPage")
     CommonResult selectPageMusic(Map<String,Object> musicPageMap);
     @PostMapping("server/video/upload")
-    CommonResult uploadVideo( File uploadVideo,@RequestParam("video") String video);
+    CommonResult uploadVideo(byte[] uploadVideo,@RequestParam("video") String video,@RequestParam("suffix")String suffix);
     @PostMapping("server/video/delete")
     CommonResult delete(Video video);
 
@@ -57,4 +58,6 @@ public interface ServerFeign {
     CommonResult selectFriends(@RequestParam("userId") String userId);
     @PostMapping("/server/chat/selectStranger")
     CommonResult selectStranger(@RequestParam("userId") String userId);
+    @PostMapping("/server/user/getUserDetail")
+    CommonResult getUserDetail(User user);
 }

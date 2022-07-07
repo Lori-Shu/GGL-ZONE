@@ -1,29 +1,35 @@
 package com.ggl.cloud.utils;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 public class StoreUtil {
-    public static String storeFile(File uploadFile, File fileToStore) {
+    public static String storeFile(byte[] uploadBytes, File fileToStore) {
         
-        try (FileInputStream fis=new FileInputStream(uploadFile); 
-        FileChannel fisChannel=fis.getChannel();
+        try (ByteArrayInputStream inputStream = new ByteArrayInputStream(uploadBytes);
         FileOutputStream fos=new FileOutputStream(fileToStore);
-        FileChannel fosChannel=fos.getChannel();){
-            ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-            int redaContent = fisChannel.read(byteBuffer);
-            while (redaContent > 0) {
-                byteBuffer.flip();
-                while (byteBuffer.hasRemaining()) {
-                    fosChannel.write(byteBuffer);
+        ) {
+            byte[] bytes= new byte[1024];
+            int readCount=0;
+            do{
+                if(inputStream.available()>1024){
+                    readCount = inputStream.read(bytes, 0, 1024);
+                    fos.write(bytes, 0, 1024);
+                } else {
+                    readCount = inputStream.read(bytes, 0, inputStream.available());
+                    fos.write(bytes, 0, inputStream.available());
                 }
-                byteBuffer.clear();
-                redaContent = fisChannel.read(byteBuffer);
-            }
+                
+            } while (readCount > 0);
+            log.warn("储存成功");
             return "储存成功";
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,7 +49,7 @@ public class StoreUtil {
                 }
                 throw new IOException( "删除失败");
             }
-            throw new IOException( "此文件不存在");
+            return "删除成功";
         } catch (Exception e) {
             e.printStackTrace();
         }

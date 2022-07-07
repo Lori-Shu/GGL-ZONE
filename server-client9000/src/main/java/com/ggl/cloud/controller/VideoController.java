@@ -34,13 +34,13 @@ public class VideoController {
 
     @PostMapping(value = "upload")
     // @PreAuthorize("hasAnyAuthority('admin')")
-    public CommonResult uploadVideo(@RequestBody File uploadVideo,@RequestParam("video")String video) throws JsonProcessingException {
+    public CommonResult uploadVideo(@RequestBody byte[] uploadVideo,@RequestParam("video")String video,String suffix) throws JsonProcessingException {
 
         // log.warn(video.toString())
-        CommonResult result=feign.uploadVideo(uploadVideo,video);
+        CommonResult result=feign.uploadVideo(uploadVideo,video,suffix);
         if(result.getCode()==CommonResult.SUCCESS){
-            String videoString=om.writeValueAsString(result.getResult());
-            return service.uploadVideo(om.readValue(videoString, Video.class));
+            Video convertVideo = om.convertValue(result.getResult(), Video.class);
+            return service.uploadVideo(convertVideo);
         }
         throw new RuntimeException("储存视频发生异常！");
     }

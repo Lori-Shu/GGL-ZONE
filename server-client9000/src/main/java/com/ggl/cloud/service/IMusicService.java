@@ -15,6 +15,9 @@ public interface IMusicService extends IService<Music>{
     CommonResult uploadMusic(Music music);
     CommonResult deleteMusic(Music music);
     CommonResult selectMusicPage(int pageNumber,int pageSize,Music music);
+
     CommonResult getStatistics();
+    CommonResult plusDownload(Music music);
+    
     
 }
