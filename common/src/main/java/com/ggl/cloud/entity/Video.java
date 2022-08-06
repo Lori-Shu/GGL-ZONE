@@ -1,10 +1,5 @@
 package com.ggl.cloud.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -20,11 +15,15 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import io.swagger.annotations.ApiModel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @ApiModel(value = "Video对象", description = "视频对象")
 public class Video implements Serializable {
     private static final long serialVersionUID = 1L;

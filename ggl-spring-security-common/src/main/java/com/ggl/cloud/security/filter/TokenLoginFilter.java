@@ -8,11 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ggl.cloud.entity.CommonResult;
-import com.ggl.cloud.entity.User;
-import com.ggl.cloud.utils.JwtUtil;
-
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,12 +19,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ggl.cloud.entity.CommonResult;
+import com.ggl.cloud.entity.User;
+import com.ggl.cloud.utils.JwtUtil;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     private RedisTemplate<String,Object> redisTemplate;
     private AuthenticationManager authenticationManager;
+    // Springsecurity一系列过滤器无法访问到Spring的bean，所需要的对象必须自己创建
     private ObjectMapper om=new ObjectMapper();
 
 
@@ -46,7 +47,14 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
         try {
             
             // log.warn(request.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
-            User user=om.readValue(request.getInputStream(), User.class);
+            // ServletInputStream is = request.getInputStream();
+            // log.warn(is.available()+"");
+            // byte[] bytes=new byte[is.available()];
+            // is.read(bytes,0,is.available());
+            // log.warn(new String(bytes, "UTF-8"));
+            // log.warn(om.getClass().getName());
+            User user = om.readValue(request.getInputStream(), User.class);
+
         //     StringBuffer data = new StringBuffer();
         // String line;
         // BufferedReader reader;

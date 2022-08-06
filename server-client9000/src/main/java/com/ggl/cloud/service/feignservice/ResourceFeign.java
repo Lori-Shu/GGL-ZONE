@@ -7,15 +7,13 @@
 */
 package com.ggl.cloud.service.feignservice;
 
-import java.io.File;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.entity.Music;
 import com.ggl.cloud.entity.Video;
-
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient("ResourceClient9992")
 public interface ResourceFeign {

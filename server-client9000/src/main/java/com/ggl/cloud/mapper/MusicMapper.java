@@ -14,7 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface MusicMapper extends BaseMapper<Music>{
-
     int getUploadCount(String date);
 
     int getDeleteCount(String date);

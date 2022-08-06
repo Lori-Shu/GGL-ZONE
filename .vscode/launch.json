@@ -2,12 +2,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch ResourceClient9992",
+            "name": "Launch Test001",
             "request": "launch",
-            "console": "internalConsole",
-            "vmArgs": "-Xmx5G",
-            "mainClass": "com.ggl.cloud.ResourceClient9992",
-            "projectName": "resource-client9992"
+            "mainClass": "test.Test001",
+            "projectName": "server-client9000"
         },
         {
             "type": "java",
@@ -17,7 +15,6 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.ggl.cloud.UserClient80",
             "projectName": "user-client80",
-            "vmArgs": "-Xmx5G",
             "envFile": "${workspaceFolder}/.env"
         },
         {
@@ -28,7 +25,6 @@
             "console": "internalConsole",
             "mainClass": "com.ggl.cloud.Gateway8999",
             "projectName": "gateway8999",
-            "args": "",
             "envFile": "${workspaceFolder}/.env"
         },
         {
@@ -39,7 +35,6 @@
             "console": "internalConsole",
             "mainClass": "com.ggl.cloud.Statistics8988",
             "projectName": "statistics8988",
-            "args": "",
             "envFile": "${workspaceFolder}/.env"
         },
         {
@@ -50,7 +45,6 @@
             "console": "internalConsole",
             "mainClass": "com.ggl.cloud.MessageService8888",
             "projectName": "message-service8888",
-            "args": "",
             "envFile": "${workspaceFolder}/.env"
         },
         {
@@ -61,7 +55,17 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.ggl.cloud.ServerClient9000",
             "projectName": "server-client9000",
-            "vmArgs": "-Xmx5G",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ResourceClient9992<resource-client9992>",
+            "request": "launch",
+            "console": "internalConsole",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ggl.cloud.ResourceClient9992",
+            "projectName": "resource-client9992",
+            "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
     ]

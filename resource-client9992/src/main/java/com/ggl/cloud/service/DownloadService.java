@@ -1,7 +1,7 @@
 package com.ggl.cloud.service;
 
 
-import java.io.File;
+import java.io.IOException;
 
 import com.ggl.cloud.entity.Music;
 import com.ggl.cloud.entity.Video;
@@ -11,6 +11,9 @@ import com.ggl.cloud.entity.Video;
  *@Date 2022/4/23
  */
 public interface DownloadService {
-    File downloadMusic(Music music);
-    File downloadVideo(Video video);
+    byte[] downloadMusic(Music music) throws IOException;
+
+    void downloadVideo(Video video);
+    
+    byte[] getFileBytes(String path) throws IOException;
 }

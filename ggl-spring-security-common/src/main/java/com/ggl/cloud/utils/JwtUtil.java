@@ -9,6 +9,8 @@ package com.ggl.cloud.utils;
 
 import java.util.Date;
 
+import javax.crypto.SecretKey;
+
 import org.springframework.util.StringUtils;
 
 import io.jsonwebtoken.Claims;
@@ -16,11 +18,15 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
 public class JwtUtil {
-    public static final long EXPIRE=1000*60*60*24;
-    public static final String SECRET= "jsdoajflkasjflkssfdggsdfgsdffgfsdgsdfgtuhtryjd";
-    public static String getJwtToken(String userId){
+    private static final long EXPIRE=1000*60*60*24;
+    private static final String SECRET = "jsdoajflkasjflkssfdggsdfgsdffgfsdgsdfgtuhtryjd";
+    private static final SecretKey MYKEY = Keys.hmacShaKeyFor(SECRET.getBytes());
+
+    public static String getJwtToken(String userId) {
+        
         JwtBuilder tokenBuilder=Jwts.builder()
             .setHeaderParam("typ", "JWT")
             .setHeaderParam("alg", "HS256")
@@ -29,7 +35,7 @@ public class JwtUtil {
             .setExpiration(new Date(System.currentTimeMillis()+EXPIRE))
             // .claim("id", id)
             .claim("userId", userId)
-            .signWith(SignatureAlgorithm.HS256,SECRET);
+            .signWith(MYKEY,SignatureAlgorithm.HS256);
 
     return tokenBuilder.compact();
 
@@ -38,7 +44,7 @@ public class JwtUtil {
     public static boolean checkToken(String token){
         if(StringUtils.isEmpty(token)) return false;
         try{
-            Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token);
+            Jwts.parser().setSigningKey(MYKEY).parseClaimsJws(token);
         }catch(Exception e){
             e.printStackTrace();
             return false;
@@ -50,7 +56,7 @@ public class JwtUtil {
 
     public static String getUserIdFromToken(String token){
         if(StringUtils.isEmpty(token)) return "";
-        Jws<Claims> jwsClaims= Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token);
+        Jws<Claims> jwsClaims= Jwts.parser().setSigningKey(MYKEY).parseClaimsJws(token);
         Claims claims=jwsClaims.getBody();
         return String.valueOf(claims.get("userId"));
 

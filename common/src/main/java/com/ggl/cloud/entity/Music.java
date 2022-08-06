@@ -18,12 +18,10 @@ import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @ApiModel(value = "Music对象", description = "音乐对象")
 public class Music implements Serializable {
     private static final long serialVersionUID = 1L;

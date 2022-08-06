@@ -26,10 +26,7 @@ import com.ggl.cloud.entity.Video;
 import com.ggl.cloud.mapper.VideoMapper;
 import com.ggl.cloud.service.IVideoService;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Service
-@Slf4j
 @Transactional
 public class VideoServiceImpl extends ServiceImpl<VideoMapper,Video> implements IVideoService{
     @Override

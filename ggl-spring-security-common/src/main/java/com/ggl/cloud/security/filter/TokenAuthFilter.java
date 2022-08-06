@@ -49,7 +49,7 @@ public class TokenAuthFilter extends BasicAuthenticationFilter {
         String token = request.getHeader("token");
         if (token == null) {
             token = request.getParameter("token");
-            log.info("wsToken======" + token);
+            log.info("token======" + token);
         }
         if (token != null&&JwtUtil.checkToken(token)) {
             String username = JwtUtil.getUserIdFromToken(token);

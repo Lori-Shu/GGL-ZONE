@@ -1,17 +1,17 @@
 package com.ggl.cloud.controller;
 
- import java.io.File;
+ import java.io.IOException;
 
 import javax.annotation.Resource;
-
-import com.ggl.cloud.entity.Music;
-import com.ggl.cloud.entity.Video;
-import com.ggl.cloud.service.DownloadService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ggl.cloud.entity.Music;
+import com.ggl.cloud.entity.Video;
+import com.ggl.cloud.service.DownloadService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,15 +26,15 @@ import lombok.extern.slf4j.Slf4j;
      @Resource
      DownloadService downloadService;
      @PostMapping("music")
-     public File download(@RequestBody Music music){
+     public byte[] download(@RequestBody Music music) throws IOException{
         log.warn("进入server/download"+"music"+music.getStorePath());
  //        log.info(src);
             return downloadService.downloadMusic(music);
      }
      @PostMapping("video")
-     public File download(@RequestBody Video video){
+     public void download(@RequestBody Video video){
  //        log.info("进入server/download");
  //        log.info(src);
-            return downloadService.downloadVideo(video);
+           downloadService.downloadVideo(video); 
      }
  }

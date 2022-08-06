@@ -130,10 +130,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements  I
         queryWrapper.eq("user_id", user.getUserId());
         User one = getOne(queryWrapper);
         // 去掉敏感内容
-        one.setPassword("");
-        one.setUpdateTime(null);
-        log.warn("查询到的用户id:" + one.getId());
-        return CommonResult.builder().code(CommonResult.SUCCESS).detail("查询用户信息成功").result(one).build();
+        if (one != null) {
+            one.setPassword("");
+            one.setUpdateTime(null);
+            log.warn("查询到的用户id:" + one.getId());
+            return CommonResult.builder().code(CommonResult.SUCCESS).detail("查询用户信息成功").result(one).build();
+        }
+        throw new RuntimeException("未查询到记录");
     }
 
     @Override

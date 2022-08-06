@@ -1,9 +1,13 @@
 package com.ggl.cloud.controller;
 
-import java.io.File;
 import java.util.Map;
 
 import javax.annotation.Resource;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -12,12 +16,6 @@ import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.entity.Music;
 import com.ggl.cloud.service.IMusicService;
 import com.ggl.cloud.service.feignservice.ResourceFeign;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 

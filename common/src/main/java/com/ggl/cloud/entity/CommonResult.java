@@ -1,14 +1,13 @@
 package com.ggl.cloud.entity;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-import java.io.Serializable;
 
-@ToString
 @Data
 @Builder
 @AllArgsConstructor

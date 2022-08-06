@@ -2,36 +2,31 @@
   <router-link to="/main/upload_video">
     <a-button style="float: right" type="primary">上传视频</a-button>
   </router-link>
-  <br/>
+  <br />
   <div id="selectArea">
     视频名：
-    <a-input-search
-        v-model:value="selectName"
-        enter-button
-        placeholder="video_name"
-        style="width:20%"
-        @search="onSearch"
-    />
+    <a-input-search v-model:value="selectName" enter-button placeholder="video_name" style="width:20%"
+      @search="onSearch" />
   </div>
-  <br/>
+  <br />
   <div class="animate__animated animate__zoomInLeft">
-    <a-list id="list" :data-source="data"
-            :grid="{gutter: 16, column: 5}">
+    <a-list id="list" :data-source="data" :grid="{gutter: 16, column: 5}">
       <template #renderItem="{ item }">
         <a-list-item>
           <a-card :title="item.videoName" hoverable>
             <template #cover>
-              <img height="100"  src='../assets/视频图标.jpeg' @click="playVideo(item)">
+              <img height="100" src='../assets/视频图标.jpeg' @click="playVideo(item)">
             </template>
-            <span>作者：{{ item.videoAuthor }}</span><br/>
+            <span>作者：{{ item.videoAuthor }}</span><br />
             <a-collapse :bordered="true">
               <template #expandIcon="{ isActive }">
-                <caret-right-outlined :rotate="isActive ? 100 : 0"/>
+                <caret-right-outlined :rotate="isActive ? 100 : 0" />
               </template>
-              <a-collapse-panel  :style="customStyle" header="视频简介">
+              <a-collapse-panel :style="customStyle" header="视频简介">
                 <p>{{ item.introduction }}</p>
               </a-collapse-panel>
-              <DeleteTwoTone id="delete" twoToneColor="#eb2f96" @click="deleteVideo(item.uuid,item.src)"/>
+              <DeleteTwoTone id="delete" twoToneColor="#eb2f96" @click="deleteVideo(item.uuid,item.src)" />
+              <cloud-download-outlined @click="downloadVideo(item)" style="font-size:x-large " />
             </a-collapse>
           </a-card>
         </a-list-item>
@@ -40,22 +35,23 @@
   </div>
   <div>
     <a-pagination v-model:current="current" :pageSize="12" :show-total="total => `总 ${total} 个视频`" :total="total"
-                  show-quick-jumper @change="onChange"/>
+      show-quick-jumper @change="onChange" />
   </div>
 </template>
 <script>
 import { nextTick, ref} from "vue";
 import axios from "axios";
-import {CaretRightOutlined, DeleteTwoTone} from "@ant-design/icons-vue";
+import {CaretRightOutlined, DeleteTwoTone,CloudDownloadOutlined} from "@ant-design/icons-vue";
 import "animate.css"
-import { message } from "ant-design-vue";
 import { router } from "../router/index"
+import myDownLoad from "../downLoad/index";
 
 export default {
   name: 'Video',
   components: {
     DeleteTwoTone,
-    CaretRightOutlined
+    CaretRightOutlined,
+    CloudDownloadOutlined
   },
   setup() {
     let data = ref([])
@@ -137,6 +133,9 @@ export default {
         })
       }
     }
+    const downloadVideo = item => {
+      myDownLoad("user/download/video", item)
+    }
     return {
       data,
       selectName,
@@ -146,7 +145,8 @@ export default {
       total,
       playVideo,
       customStyle,
-      deleteVideo
+      deleteVideo,
+      downloadVideo
     }
   }
 }

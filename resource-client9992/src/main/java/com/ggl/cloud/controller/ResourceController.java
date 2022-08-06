@@ -7,12 +7,9 @@
 */
 package com.ggl.cloud.controller;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

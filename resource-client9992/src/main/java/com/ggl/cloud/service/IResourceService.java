@@ -1,10 +1,6 @@
 package com.ggl.cloud.service;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
-
-import javax.servlet.http.HttpServletRequest;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ggl.cloud.entity.CommonResult;

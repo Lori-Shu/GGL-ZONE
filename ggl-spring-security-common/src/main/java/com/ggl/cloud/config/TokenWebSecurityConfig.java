@@ -1,9 +1,7 @@
 package com.ggl.cloud.config;
 
-import com.ggl.cloud.security.TokenLogoutHandler;
-import com.ggl.cloud.security.UnauthorizedHandler;
-import com.ggl.cloud.security.filter.TokenAuthFilter;
-import com.ggl.cloud.security.filter.TokenLoginFilter;
+import javax.annotation.Resource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -17,7 +15,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.annotation.Resource;
+import com.ggl.cloud.security.TokenLogoutHandler;
+import com.ggl.cloud.security.UnauthorizedHandler;
+import com.ggl.cloud.security.filter.TokenAuthFilter;
+import com.ggl.cloud.security.filter.TokenLoginFilter;
 
 @Configuration
 @EnableWebSecurity

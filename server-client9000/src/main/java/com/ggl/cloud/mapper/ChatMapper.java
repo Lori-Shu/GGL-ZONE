@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ggl.cloud.entity.Friend;
 
 @Mapper
-public interface ChatMapper extends BaseMapper<Friend>{
+public interface ChatMapper extends BaseMapper<Friend> {
     List<String> selectFriends(String userId);
 
     Integer addFriend(@Param("userId") String userId, @Param("targetId") String targetId);

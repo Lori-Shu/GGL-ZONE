@@ -25,12 +25,10 @@ import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @ApiModel(value = "Friend对象", description = "好友对象")
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Data
 public class Friend implements Serializable{
     private static final long serialVersionUID = 1L;
