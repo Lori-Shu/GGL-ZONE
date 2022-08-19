@@ -76,7 +76,7 @@ mybatis-plus:
 #       password: nacos
 # 配置 rocketmq
 rocketmq:
-  name-server: 127.0.0.1:9876
+  name-server: localhost:9876
   #生产者
   producer:
     #生产者组名，规定在一个应用里面必须唯一

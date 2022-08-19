@@ -22,7 +22,10 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public CommonResult error(Exception e){
         // e.printStackTrace();
-        log.error(e.getMessage());
+        log.warn("clazz:"+e.getClass().getName());
+        log.error("message:"+e.getMessage());
+        String cause=e.getCause().getMessage();
+        log.warn("cause:" + cause);
         return CommonResult.builder().code(CommonResult.ERROR).detail(e.getMessage()).build();
     }
 }

@@ -1,9 +1,13 @@
-import org.junit.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+
+import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class MyTest {
@@ -73,7 +77,7 @@ public class MyTest {
             fisChannel = fis.getChannel();
             fosChannel = fos.getChannel();
             ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-//            Long flag=0L;
+            //            Long flag=0L;
             int i = fisChannel.read(byteBuffer);
             while (i > 0) {
                 byteBuffer.flip();
@@ -97,5 +101,29 @@ public class MyTest {
             }
         }
 
+    }
+    @Test
+    public void testSyncConsumer() {
+        // DefaultMQPushConsumer consumer = new DefaultMQPushConsumer();
+        // String s="sd";
+        // switch (s) {
+        //     case "sd":
+        //         System.out.println("可以使用");
+        //         break;
+        //     default :System.out.println("不可以使用");
+        // }
+        System.out.println(3 * 0.1 == 0.3);
+    }
+    @Test
+    public void testWait() {
+        synchronized (this) {
+            try {
+                // wait等待时间结束自动醒来不会报异常
+                this.wait(1000);
+            } catch (InterruptedException e) {
+                //处理超时
+                System.out.println("wait报错");
+            }
+        }
     }
 }

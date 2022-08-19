@@ -37,7 +37,7 @@
 import {inject, nextTick,ref} from "vue";
 import axios from "axios";
 import {DeleteTwoTone,CloudDownloadOutlined} from "@ant-design/icons-vue";
-import myDownLoad from "@/downLoad";
+import { myDownLoad } from "@/downLoad";
 import { computed } from "@vue/reactivity";
 import store from "../store";
 import { message } from "ant-design-vue";

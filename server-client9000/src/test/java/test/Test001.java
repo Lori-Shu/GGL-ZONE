@@ -132,7 +132,7 @@ public class Test001 {
         
     }
 
-    public static void main(String[] args) {
+    // public static void main(String[] args) {
         // try (FileInputStream fis = new FileInputStream("F:\\视频\\指环王2.mp4");
         //         BufferedInputStream bis = new BufferedInputStream(fis);
         //         ByteArrayOutputStream baos = new ByteArrayOutputStream();) {
@@ -154,7 +154,7 @@ public class Test001 {
         //     System.out.println(e.getMessage());
         // }
         // Path movie = Paths.get("F:\\视频\\指环王2.mp4");
-        File movie=new File("F:\\视频\\指环王2.mp4");
-        System.out.println(movie.length());
-    }
+        // File movie=new File("F:\\视频\\指环王2.mp4");
+        // System.out.println(movie.length());
+    // }
 }

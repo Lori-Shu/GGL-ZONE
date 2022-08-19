@@ -38,7 +38,9 @@ public class ChatController {
     @PostMapping("/select_stranger")
     public CommonResult selectStranger(String userId) {
         log.warn("查询的id"+userId);
+        
         return serverFeign.selectStranger(userId);
+        
     }
 
     

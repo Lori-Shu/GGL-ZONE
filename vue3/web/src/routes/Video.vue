@@ -44,7 +44,7 @@ import axios from "axios";
 import {CaretRightOutlined, DeleteTwoTone,CloudDownloadOutlined} from "@ant-design/icons-vue";
 import "animate.css"
 import { router } from "../router/index"
-import myDownLoad from "../downLoad/index";
+import { downloadMovie } from "../downLoad/index";
 
 export default {
   name: 'Video',
@@ -134,7 +134,7 @@ export default {
       }
     }
     const downloadVideo = item => {
-      myDownLoad("user/download/video", item)
+      downloadMovie(item)
     }
     return {
       data,

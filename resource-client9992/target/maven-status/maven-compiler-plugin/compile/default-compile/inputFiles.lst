@@ -1,0 +1,11 @@
+/home/Lori/我的文档/GGL-ZONE/resource-client9992/src/main/java/com/ggl/cloud/service/IResourceService.java
+/home/Lori/我的文档/GGL-ZONE/resource-client9992/src/main/java/com/ggl/cloud/ResourceClient9992.java
+/home/Lori/我的文档/GGL-ZONE/resource-client9992/src/main/java/com/ggl/cloud/mapper/ResourceMapper.java
+/home/Lori/我的文档/GGL-ZONE/resource-client9992/src/main/java/com/ggl/cloud/interceptor/MyFeignClientInterceptor.java
+/home/Lori/我的文档/GGL-ZONE/resource-client9992/src/main/java/com/ggl/cloud/controller/ResourceController.java
+/home/Lori/我的文档/GGL-ZONE/resource-client9992/src/main/java/com/ggl/cloud/transaction/MyTransactionListener.java
+/home/Lori/我的文档/GGL-ZONE/resource-client9992/src/main/java/com/ggl/cloud/controller/DownloadController.java
+/home/Lori/我的文档/GGL-ZONE/resource-client9992/src/main/java/com/ggl/cloud/service/impl/DownloadServiceImpl.java
+/home/Lori/我的文档/GGL-ZONE/resource-client9992/src/main/java/com/ggl/cloud/feignservice/ServerFeign.java
+/home/Lori/我的文档/GGL-ZONE/resource-client9992/src/main/java/com/ggl/cloud/service/impl/ResourceServiceImpl.java
+/home/Lori/我的文档/GGL-ZONE/resource-client9992/src/main/java/com/ggl/cloud/service/DownloadService.java

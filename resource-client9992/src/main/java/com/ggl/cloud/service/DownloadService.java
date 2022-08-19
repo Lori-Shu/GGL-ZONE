@@ -4,7 +4,6 @@ package com.ggl.cloud.service;
 import java.io.IOException;
 
 import com.ggl.cloud.entity.Music;
-import com.ggl.cloud.entity.Video;
 
 /*
  *@Author Lori Shu
@@ -13,7 +12,7 @@ import com.ggl.cloud.entity.Video;
 public interface DownloadService {
     byte[] downloadMusic(Music music) throws IOException;
 
-    void downloadVideo(Video video);
+    // void downloadVideo(Video video);
     
     byte[] getFileBytes(String path) throws IOException;
 }
