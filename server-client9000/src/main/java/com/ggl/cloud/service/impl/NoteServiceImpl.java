@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @Slf4j
-@Transactional
+@Transactional(rollbackFor = RuntimeException.class)
 public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements INoteService {
     @Override
     @CacheEvict(value = "selectPageNote",allEntries = true)
@@ -63,7 +63,6 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
              // 先查再改乐观锁才起效,version必须为查出来的值，否则会修改失败
             Note thisNote=getById(note.getId());
             note.setVersion(thisNote.getVersion());
-            // thisNote.setContent("我要修改content");
             if(updateById(note)){
                 return CommonResult.builder().code(CommonResult.SUCCESS).detail("修改成功").build();
             }
@@ -102,12 +101,9 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
         long count = count(queryWrapper);
         page(page,queryWrapper); 
         log.warn(note.toString());
-        // System.out.println(page.getRecords());
-
-    //    log.info(splitPage.getPageList().toString());
         if(page.getRecords().size()>0){
             log.warn(page.getRecords().toString());
-            Map<String,Object> resultMap=new HashMap<>();
+            Map<String,Object> resultMap=new HashMap<>(2);
             resultMap.put("total", count);
             resultMap.put("list", page.getRecords());
             return CommonResult.builder().code(CommonResult.SUCCESS).detail("查询成功").result(resultMap).build();

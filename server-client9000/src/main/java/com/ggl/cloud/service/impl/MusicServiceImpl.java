@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.Resource;
 
@@ -38,10 +37,17 @@ import com.ggl.cloud.mapper.MusicMapper;
 import com.ggl.cloud.service.IMusicService;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午3:33:00
+ *
+ */
 @Service
 @Slf4j
-@Transactional
+@Transactional(rollbackFor = RuntimeException.class)
 public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements IMusicService {
     @Resource
     MusicMapper mapper;
@@ -93,7 +99,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
         long count = count(queryWrapper);
         page(musicPage, queryWrapper);
         if (musicPage.getRecords().size() > 0) {
-            Map<String, Object> resMap = new HashMap<>();
+            Map<String, Object> resMap = new HashMap<>(2);
             resMap.put("total", count);
             resMap.put("list", musicPage.getRecords());
             log.warn(musicPage.getRecords().toString());
@@ -116,7 +122,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
         log.warn("uploadCount" + uploadCount);
         int deleteCount = mapper.getDeleteCount(s);
         log.warn("deleteCount" + deleteCount);
-        Map<String, Integer> resultMap = new ConcurrentHashMap<>();
+        Map<String, Integer> resultMap = new HashMap<>(2);
         resultMap.put("musicUploadCount", uploadCount);
         resultMap.put("musicDeleteCount", deleteCount);
         return CommonResult.builder().code(CommonResult.SUCCESS).detail("统计成功").result(resultMap).build();

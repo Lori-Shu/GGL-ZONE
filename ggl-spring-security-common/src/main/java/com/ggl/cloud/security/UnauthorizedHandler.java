@@ -12,7 +12,14 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ggl.cloud.entity.CommonResult;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:31:54
+ *
+ */
 public class UnauthorizedHandler implements AuthenticationEntryPoint {
     private ObjectMapper om = new ObjectMapper();
     @Override

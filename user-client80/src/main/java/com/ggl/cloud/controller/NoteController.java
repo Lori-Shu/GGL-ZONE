@@ -7,7 +7,7 @@
 */
 package com.ggl.cloud.controller;
 
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
 
 import javax.annotation.Resource;
 
@@ -21,7 +21,14 @@ import com.ggl.cloud.entity.Note;
 import com.ggl.cloud.feignservice.ServerFeign;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午3:48:34
+ *
+ */
 @RestController
 @RequestMapping("user/note")
 @Slf4j
@@ -46,7 +53,7 @@ public class NoteController {
     }
     @PostMapping("select_page")
     public CommonResult selectPage(int pageNumber,int pageSize,@RequestBody Note note) {
-        ConcurrentHashMap<String,Object> map=new ConcurrentHashMap<>();
+        HashMap<String,Object> map=new HashMap<>(3);
         map.put("pageNumber", pageNumber);
         map.put("pageSize", pageSize);
         log.warn(note.toString());

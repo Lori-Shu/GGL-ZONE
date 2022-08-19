@@ -25,7 +25,7 @@ import com.ggl.cloud.feignservice.ResourceFeign;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
+/**
  *@Author Lori Shu
  *@Date 2022/4/23
  */
@@ -39,8 +39,6 @@ public class DownloadController {
     @Resource
     private ObjectMapper om;
 
-    // @Resource
-    // private AsyncDownloadService asyncDownloadService;
 
     @PostMapping("music")
     public void downloadMusic(@RequestBody Music music, HttpServletRequest request,

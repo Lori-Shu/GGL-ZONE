@@ -2,7 +2,7 @@ package com.ggl.cloud.controller;
 
 
 import java.io.IOException;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
 
 import javax.annotation.Resource;
 
@@ -18,7 +18,14 @@ import com.ggl.cloud.entity.Music;
 import com.ggl.cloud.feignservice.ServerFeign;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午3:47:47
+ *
+ */
 @RestController
 @RequestMapping("user/music")
 @Slf4j
@@ -54,7 +61,7 @@ public class MusicController {
     @PostMapping("select_page")
     public CommonResult selectPage(int pageNumber, int pageSize,@RequestBody Music music) {
 //        log.info(music);
-ConcurrentHashMap<String, Object> map = new ConcurrentHashMap<>();
+        HashMap<String, Object> map = new HashMap<>(3);
         log.warn("pageSize" + pageNumber);
         log.warn("pageSize"+pageSize);
         map.put("pageNumber", pageNumber);

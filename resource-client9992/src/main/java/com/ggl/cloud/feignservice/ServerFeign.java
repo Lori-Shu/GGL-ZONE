@@ -16,8 +16,21 @@ import com.ggl.cloud.entity.User;
 
 @FeignClient("ServerClient9000")
 public interface ServerFeign {
+    /**
+     * description 增加数据库里访问次数的数据
+     * 
+     * @param music
+     * @return 增加访问次数的结果
+     */
     @PostMapping("server/music/plusDownload")
     CommonResult plusDownload(Music music);
+    
+    /**
+     * description 更新数据库里头像的数据
+     * 
+     * @param user
+     * @return 更新头像的结果
+     */
     @PostMapping("server/user/uploadAvatar")
     CommonResult uploadAvatar(User user);
 }

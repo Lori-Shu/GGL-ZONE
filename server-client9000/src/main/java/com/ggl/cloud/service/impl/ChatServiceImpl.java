@@ -17,7 +17,14 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午3:32:54
+ *
+ */
 @Service
 @Slf4j
 public class ChatServiceImpl extends ServiceImpl<ChatMapper,Friend> implements IChatService {

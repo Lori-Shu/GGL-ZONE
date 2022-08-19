@@ -21,13 +21,20 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:24:30
+ *
+ */
 
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
     @Bean
-    public Docket WebApiConfig(){
+    public Docket webApiConfig(){
         return new Docket(DocumentationType.SWAGGER_2)
         .groupName("webApi")
         .apiInfo(webApiInfo())

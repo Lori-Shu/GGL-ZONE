@@ -15,7 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午3:06:50
+ *
+ */
 @RestController
 @Slf4j
 @RequestMapping("/server/chat")
@@ -46,7 +53,7 @@ public class ChatController {
         stranger.setUserId(userId);
         User user= userService.selectUser(stranger);
         log.warn(user.toString());
-        if(!user.getId().equals("")){
+        if(!"".equals(user.getId())&&null!=user.getId()){
             return CommonResult.builder().code(CommonResult.SUCCESS).detail("查询用户存在,是否添加为好友").build();
         }
         throw new RuntimeException("查询用户不存在");

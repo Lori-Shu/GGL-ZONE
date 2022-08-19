@@ -19,5 +19,13 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 @Mapper
 public interface StatisticsMapper extends BaseMapper<Statistics> {
+    /**
+     * select
+     * @param startIndex
+     * @param pageSize
+     * @param from
+     * @param to
+     * @return
+     */
     List<Statistics> mySelectPage(@Param("startIndex") int startIndex,@Param("pageSize") int pageSize,@Param("from") String from,@Param("to") String to);
 }

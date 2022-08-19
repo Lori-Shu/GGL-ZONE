@@ -6,6 +6,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import lombok.extern.slf4j.Slf4j;
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:25:35
+ *
+ */
 @Slf4j
 public class StoreUtil {
     public static String storeFile(byte[] uploadBytes, File fileToStore) {

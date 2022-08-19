@@ -19,7 +19,14 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:32:50
+ *
+ */
 public class JwtUtil {
     private static final long EXPIRE=1000*60*60*24;
     private static final String SECRET = "jsdoajflkasjflkssfdggsdfgsdffgfsdgsdfgtuhtryjd";
@@ -42,7 +49,9 @@ public class JwtUtil {
     }
 
     public static boolean checkToken(String token){
-        if(StringUtils.isEmpty(token)) return false;
+        if (StringUtils.isEmpty(token)) {
+            return false;
+        }
         try{
             Jwts.parser().setSigningKey(MYKEY).parseClaimsJws(token);
         }catch(Exception e){
@@ -55,7 +64,9 @@ public class JwtUtil {
     }
 
     public static String getUserIdFromToken(String token){
-        if(StringUtils.isEmpty(token)) return "";
+        if (StringUtils.isEmpty(token)) {
+            return "";
+        }
         Jws<Claims> jwsClaims= Jwts.parser().setSigningKey(MYKEY).parseClaimsJws(token);
         Claims claims=jwsClaims.getBody();
         return String.valueOf(claims.get("userId"));

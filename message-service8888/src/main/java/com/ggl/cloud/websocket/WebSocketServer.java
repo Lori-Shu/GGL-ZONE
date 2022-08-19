@@ -21,7 +21,14 @@ import com.ggl.cloud.entity.CommonMessage;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:33:07
+ *
+ */
 @ServerEndpoint(value = "/websocket/{userId}", subprotocols = {"protocol"})
 @Slf4j
 @Component
@@ -35,7 +42,8 @@ public class WebSocketServer {
      */
     private static ConcurrentHashMap<String, Session> sessionPools = new ConcurrentHashMap<>();
     private ObjectMapper objectMapper = new ObjectMapper();
-    private DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");   
+    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private final String system = "system";
     @OnOpen
     public void onOpen(Session session, @PathParam("userId") String userId)  {
         sessionPools.put(userId, session);
@@ -60,7 +68,7 @@ public class WebSocketServer {
         try {
             CommonMessage commonMessage=objectMapper.readValue(jsonString, CommonMessage.class);
             
-            if (!commonMessage.getFrom().equals("system")) {
+            if (!(system.equals(commonMessage.getFrom()))) {
     //        log.info(target.textValue());
                 Session targetSession = sessionPools.get(commonMessage.getTarget());
                 if (targetSession != null) {

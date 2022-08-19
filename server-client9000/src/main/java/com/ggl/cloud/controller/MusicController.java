@@ -18,7 +18,14 @@ import com.ggl.cloud.service.IMusicService;
 import com.ggl.cloud.service.feignservice.ResourceFeign;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午3:11:22
+ *
+ */
 @RestController
 @Slf4j
 @RequestMapping("server/music")

@@ -13,13 +13,20 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.utils.JwtUtil;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:31:17
+ *
+ */
 public class TokenLogoutHandler implements LogoutHandler {
     private ObjectMapper om = new ObjectMapper();
-    private RedisTemplate<String,Object> RedisTemplate;
+    private RedisTemplate<String,Object> redisTemplate;
 
-    public TokenLogoutHandler(RedisTemplate<String,Object> RedisTemplate) {
-        this.RedisTemplate = RedisTemplate;
+    public TokenLogoutHandler(RedisTemplate<String,Object> redisTemplate) {
+        this.redisTemplate = redisTemplate;
     }
 
     @Override
@@ -27,7 +34,7 @@ public class TokenLogoutHandler implements LogoutHandler {
         String token = httpServletRequest.getHeader("token");
         if (token != null) {
             
-            RedisTemplate.delete(JwtUtil.getUserIdFromToken(token));
+            redisTemplate.delete(JwtUtil.getUserIdFromToken(token));
         }
         httpServletResponse.setStatus(HttpStatus.OK.value());
         httpServletResponse.setContentType("application/json;charset=utf-8");

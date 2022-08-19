@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,14 @@ import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.entity.Video;
 import com.ggl.cloud.service.IVideoService;
 import com.ggl.cloud.service.feignservice.ResourceFeign;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午3:11:35
+ *
+ */
 @RestController
 @RequestMapping("server/video")
 public class VideoController {
@@ -29,7 +37,7 @@ public class VideoController {
     private ObjectMapper om=new ObjectMapper();
 
     @PostMapping(value = "upload")
-    // @PreAuthorize("hasAnyAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin')")
     public CommonResult uploadVideo(@RequestBody byte[] uploadVideo,@RequestParam("video")String video,String suffix) throws JsonProcessingException {
 
         // log.warn(video.toString())

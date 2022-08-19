@@ -18,7 +18,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:32:01
+ *
+ */
 @Slf4j
 public class TokenAuthFilter extends BasicAuthenticationFilter {
     private RedisTemplate<String,Object> redisTemplate;

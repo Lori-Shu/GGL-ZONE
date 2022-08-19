@@ -25,9 +25,16 @@ import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.entity.Video;
 import com.ggl.cloud.mapper.VideoMapper;
 import com.ggl.cloud.service.IVideoService;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午3:41:47
+ *
+ */
 @Service
-@Transactional
+@Transactional(rollbackFor = RuntimeException.class)
 public class VideoServiceImpl extends ServiceImpl<VideoMapper,Video> implements IVideoService{
     @Override
     @CacheEvict(value = "selectPageVideo",allEntries=true)
@@ -66,7 +73,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper,Video> implements 
         page(videoPage, queryWrapper);
         
         if (videoPage.getRecords().size() > 0) {
-            Map<String, Object> res = new HashMap<>();
+            Map<String, Object> res = new HashMap<>(2);
             res.put("list", videoPage.getRecords());
             res.put("total", count);
             return CommonResult.builder()

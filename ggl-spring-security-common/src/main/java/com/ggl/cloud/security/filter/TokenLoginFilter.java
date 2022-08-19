@@ -25,12 +25,21 @@ import com.ggl.cloud.entity.User;
 import com.ggl.cloud.utils.JwtUtil;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:32:12
+ *
+ */
 @Slf4j
 public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     private RedisTemplate<String,Object> redisTemplate;
     private AuthenticationManager authenticationManager;
-    // Springsecurity一系列过滤器无法访问到Spring的bean，所需要的对象必须自己创建
+    /**
+     * Springsecurity一系列过滤器无法访问到Spring的bean，所需要的对象必须自己创建
+     */
     private ObjectMapper om=new ObjectMapper();
 
 

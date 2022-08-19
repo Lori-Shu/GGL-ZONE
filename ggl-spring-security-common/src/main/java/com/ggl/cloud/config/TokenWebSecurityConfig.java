@@ -19,10 +19,18 @@ import com.ggl.cloud.security.TokenLogoutHandler;
 import com.ggl.cloud.security.UnauthorizedHandler;
 import com.ggl.cloud.security.filter.TokenAuthFilter;
 import com.ggl.cloud.security.filter.TokenLoginFilter;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:26:10
+ *
+ */
 @Configuration
 @EnableWebSecurity
 public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
+     
     @Resource
     private RedisTemplate<String,Object> redisTemplate;
     @Resource

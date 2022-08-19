@@ -12,8 +12,17 @@ import java.util.Enumeration;
 /*
  * Feign拦截器
  */
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:39:29
+ *
+ */
 @Component
 public class MyFeignClientInterceptor implements RequestInterceptor {
+    private final String tokenField = "token";
 
     @Override
     public void apply(RequestTemplate template) {
@@ -31,7 +40,7 @@ public class MyFeignClientInterceptor implements RequestInterceptor {
                         String headerName = headerNames.nextElement();
                         String headerValue = request.getHeader(headerName);
                         // 将header向下传递
-                        if (headerName.equals("token")) {
+                        if (tokenField.equals(headerName)) {
                             template.header(headerName, headerValue);
                         }
                     }

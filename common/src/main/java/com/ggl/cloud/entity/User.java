@@ -18,7 +18,14 @@ import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:25:21
+ *
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

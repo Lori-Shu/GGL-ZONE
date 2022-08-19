@@ -16,8 +16,20 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-05-17
  */
 public interface IStatisticsService extends IService<Statistics> {
-
-    CommonResult insertStatistics(Map<String,Integer> result);
+    /**
+     * insert
+     * @param result
+     * @return
+     */
+    CommonResult insertStatistics(Map<String, Integer> result);
+    /**
+     * selectPage
+     * @param pageNumber
+     * @param pageSize
+     * @param from
+     * @param to
+     * @return
+     */
     CommonResult selectPage(int pageNumber,int pageSize,String from,String to);
 
 }

@@ -2,10 +2,18 @@ package com.ggl.cloud.service.impl;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.Resource;
+
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -16,19 +24,18 @@ import com.ggl.cloud.entity.User;
 import com.ggl.cloud.mapper.UserMapper;
 import com.ggl.cloud.service.IUserService;
 
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午3:35:54
+ *
+ */
 @Service
 @Slf4j
-@Transactional
+@Transactional(rollbackFor = RuntimeException.class)
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements  IUserService,UserDetailsService {
     @Resource
     private PasswordEncoder passwordEncoder;
@@ -40,7 +47,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements  I
         tempUser.setUserId(s);
         User user=selectUser(tempUser);
         // log.info(user.toString());
-        if (user.getId().equals("")) {
+        String empty = "";
+        if (empty.equals(user.getId())&&null!=user.getId()) {
             throw new UsernameNotFoundException("用户不存在");
         }
         String auth = user.getAuth();
@@ -87,8 +95,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements  I
     public CommonResult updateUser(User user) {
         // 用户更新方法
         // !!!要乐观锁起效必须在所有需要锁的update方法先查询，将查到的version赋值后再调用修改
-        User thisUser=getById(user.getId());
-        if(!thisUser.getId().equals("")){
+        User thisUser = getById(user.getId());
+        String empty = "";
+        if(! empty.equals(thisUser.getId())&&null!=thisUser.getId()){
             user.setVersion(thisUser.getVersion());
             if(updateById(user)){
                 return CommonResult.builder().code(CommonResult.SUCCESS).detail("修改用户成功").build();
@@ -118,7 +127,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements  I
         log.warn("registryCount"+registryCount);
         // int deleteCount=mapper.getDeleteCount(s);
         // log.warn("deleteCount"+deleteCount);
-        Map<String,Integer> resultMap=new ConcurrentHashMap<>();
+        Map<String,Integer> resultMap=new HashMap<>(1);
         resultMap.put("userRegistryCount", registryCount);
         return CommonResult.builder().code(CommonResult.SUCCESS).detail("统计成功").result(resultMap).build();
     }

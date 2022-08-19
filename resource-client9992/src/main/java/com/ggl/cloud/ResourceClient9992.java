@@ -9,6 +9,14 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * Hello world!
  *
  */
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:36:19
+ *
+ */
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients

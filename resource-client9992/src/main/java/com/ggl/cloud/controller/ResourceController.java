@@ -27,7 +27,14 @@ import com.ggl.cloud.feignservice.ServerFeign;
 import com.ggl.cloud.service.IResourceService;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:36:37
+ *
+ */
 @RestController
 @RequestMapping("resource")
 @Slf4j

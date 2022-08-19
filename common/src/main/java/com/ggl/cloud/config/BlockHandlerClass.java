@@ -14,6 +14,13 @@ import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.entity.Note;
 
 import lombok.extern.slf4j.Slf4j;
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:15:43
+ **/
 @Slf4j
 public class BlockHandlerClass  {
     public static CommonResult defaultBlock(Note note,BlockException exception){

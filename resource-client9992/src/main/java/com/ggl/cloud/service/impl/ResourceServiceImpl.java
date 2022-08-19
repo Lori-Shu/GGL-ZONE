@@ -24,9 +24,17 @@ import com.ggl.cloud.service.IResourceService;
 import com.ggl.cloud.utils.StoreUtil;
 
 import lombok.extern.slf4j.Slf4j;
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午2:56:30
+ *
+ */
 @Service
 @Slf4j
-@Transactional
+@Transactional(rollbackFor = RuntimeException.class)
 public class ResourceServiceImpl extends ServiceImpl<ResourceMapper,Resource> implements IResourceService {
     @Override
     public String getHalfSrcFromRequest() {
@@ -60,7 +68,8 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper,Resource> im
         }
         File fileToStore = new File(musicPath);
         String storeFileRes = StoreUtil.storeFile(uploadMusic, fileToStore);
-        if(storeFileRes.equals("储存成功")){
+        String success = "储存成功";
+        if(success.equals(storeFileRes)){
             return CommonResult.builder().code(CommonResult.SUCCESS).result(music).build();
         }
 
@@ -70,7 +79,8 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper,Resource> im
     @Override
     public CommonResult deleteMusic(Music music) {
         // 删除音乐方法
-        if(StoreUtil.deleteFile(music.getStorePath()).equals("删除成功")){
+        String success= "删除成功";
+        if(success.equals(StoreUtil.deleteFile(music.getStorePath()))){
             return CommonResult.builder().code(CommonResult.SUCCESS).detail("删除音乐成功！").build();
         }
         throw new RuntimeException("删除音乐文件发生异常！");
@@ -94,7 +104,8 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper,Resource> im
             }
             File fileToStore = new File(videoPath);
             String res = StoreUtil.storeFile(uploadVideo, fileToStore);
-            if (res.equals("储存成功")) {
+            String success = "储存成功";
+            if (success.equals( res)) {
                 return CommonResult.builder().code(CommonResult.SUCCESS).result(video).build();
             }
             throw new RuntimeException("储存视频出现问题");
@@ -103,7 +114,8 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper,Resource> im
     @Override
     public CommonResult deleteVideo(Video video) {
         // 删除视频方法
-        if(StoreUtil.deleteFile(video.getStorePath()).equals("删除成功")){
+        String success = "删除成功";
+        if(success.equals(StoreUtil.deleteFile(video.getStorePath()))){
             return CommonResult.builder().code(CommonResult.SUCCESS).detail("删除视频成功！").build();
         }
         throw new RuntimeException("删除视频文件发生异常！");
@@ -122,7 +134,8 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper,Resource> im
         String storeFile = StoreUtil.storeFile(avatar, file);
         log.warn(string);
         log.warn(dirPathFromMyuri);
-        if (storeFile.equals("储存成功")) {
+        String success = "储存成功";
+        if (success.equals(storeFile)) {
             return halfSrc + string;
         }
         return null;

@@ -32,7 +32,7 @@ public class StatisticsServiceImpl extends ServiceImpl<StatisticsMapper, Statist
     public CommonResult insertStatistics(Map<String, Integer> result) {
         // 插入统计数据方法
         Statistics statistics = new Statistics();
-        // log.warn("得到的统计结果---" + result.get("musicUploadCount"));
+        log.warn("得到的统计结果---" + result.get("musicUploadCount"));
         statistics.setMusicUploadCount(result.get("musicUploadCount"));
         statistics.setMusicDeleteCount(result.get("musicDeleteCount"));
         statistics.setUserRegistryCount(result.get("userRegistryCount"));

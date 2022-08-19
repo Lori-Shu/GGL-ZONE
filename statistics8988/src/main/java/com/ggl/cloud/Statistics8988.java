@@ -18,7 +18,14 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * 
+ * description
+ *
+ * @author Lori
+ * createTime 2022年8月19日-下午3:44:54
+ *
+ */
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
