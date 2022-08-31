@@ -7,11 +7,12 @@
 */
 package com.ggl.cloud.config;
 
-import com.ggl.cloud.entity.CommonResult;
+import java.util.ArrayList;
 
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import com.ggl.cloud.entity.CommonResult;
 
 import lombok.extern.slf4j.Slf4j;
 /**
@@ -22,11 +23,10 @@ import lombok.extern.slf4j.Slf4j;
  * createTime 2022年8月19日-下午2:16:25
  *
  */
-@ControllerAdvice
+@RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
-    @ResponseBody
     public CommonResult error(Exception e){
         // e.printStackTrace();
         log.warn("clazz:"+e.getClass().getName());

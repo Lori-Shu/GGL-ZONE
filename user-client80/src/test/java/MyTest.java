@@ -3,8 +3,11 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -112,7 +115,8 @@ public class MyTest {
         //         break;
         //     default :System.out.println("不可以使用");
         // }
-        System.out.println(3 * 0.1 == 0.3);
+        // 所有浮点数存在误差，不精准
+        System.out.println(3 *0.1 == 0.3);
     }
     @Test
     public void testWait() {
@@ -125,5 +129,41 @@ public class MyTest {
                 System.out.println("wait报错");
             }
         }
+    }
+    @Test
+    public void testReflex(){
+        MyTest myTest = new MyTest();
+        try {
+            Method method = myTest.getClass().getMethod("testSyncConsumer");
+            Object invoke = method.invoke(myTest);
+        } catch (NoSuchMethodException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SecurityException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void testStreamSort(){
+        ArrayList<Integer> al = new ArrayList<>();
+        al.add(12);
+        al.add(5);
+        al.add(9);
+        al.add(-96);
+        al.stream().sorted((i1,i2)->{
+            return i1-i2;
+        }).forEach((o)->{
+            System.out.println(o);
+        });
     }
 }

@@ -1,3 +1,4 @@
+
 package com.ggl.cloud;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
@@ -20,6 +21,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 public class UserClient80 {
     public static void main(String[] args) {
+        new String();
         SpringApplication.run(UserClient80.class, args);
     }
 }

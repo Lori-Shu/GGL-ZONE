@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MyTest",
+            "request": "launch",
+            "mainClass": "MyTest",
+            "projectName": "user-client80"
+        },
+        {
+            "type": "java",
             "name": "Launch Test001",
             "request": "launch",
             "mainClass": "test.Test001",
