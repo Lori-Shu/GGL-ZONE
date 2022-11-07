@@ -60,6 +60,7 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
         if (save(music)) {
             return CommonResult.builder().code(CommonResult.SUCCESS).detail("上传音乐成功").build();
         }
+        
         throw new RuntimeException("保存音乐记录出现了问题！");
     }
 
