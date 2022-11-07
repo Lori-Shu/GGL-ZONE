@@ -15,6 +15,7 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
@@ -37,8 +38,8 @@ public class RedisConfig extends CachingConfigurerSupport {
     // private static final long DEFAULT_TTL = 999999L;
 
     @Bean
-    public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory factory){
-        RedisTemplate<String,Object> redisTemplate=new RedisTemplate<>();
+    public StringRedisTemplate redisTemplate(RedisConnectionFactory factory){
+        StringRedisTemplate redisTemplate=new StringRedisTemplate();
         RedisSerializer<String> redisSerializer=new StringRedisSerializer();
         Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer=new Jackson2JsonRedisSerializer<>(Object.class);
         ObjectMapper objectMapper=new ObjectMapper();
@@ -50,6 +51,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         redisTemplate.setKeySerializer(redisSerializer);
         redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
         redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+        redisTemplate.setEnableTransactionSupport(true);
         return redisTemplate;
          
     }

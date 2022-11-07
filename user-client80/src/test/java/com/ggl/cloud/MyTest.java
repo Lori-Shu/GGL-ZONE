@@ -1,3 +1,6 @@
+package com.ggl.cloud;
+
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -8,12 +11,27 @@ import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
+import javax.annotation.Resource;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
-@SpringBootTest
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ggl.cloud.entity.Music;
+import com.ggl.cloud.testentity.Colleague;
+
+import lombok.extern.slf4j.Slf4j;
+
+// @SpringBootTest(classes = UserClient80.class)
+@Slf4j
 public class MyTest {
+    
+
     @Test
     public void ioTest() {
         FileInputStream fis = null;
@@ -166,4 +184,47 @@ public class MyTest {
             System.out.println(o);
         });
     }
+    @Resource
+    private RedisTemplate<String,Object> redisTemplate; 
+
+    @Test
+    public void testRedisTemplate(){
+        Music music = new Music();
+        music.setMusicName("青花瓷");
+        music.setMusician("房文山&周杰伦");
+        redisTemplate.opsForValue().set("青花瓷",music );
+        try {
+            Thread.sleep(1000);
+            Music sm = (Music)redisTemplate.opsForValue().get("青花瓷");
+            log.warn(sm.toString());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+
+    @Test
+    public void testRedisPub(){
+        stringRedisTemplate.convertAndSend("testTopic", "hello!world!");
+        log.warn("消息已经发布到redis");
+        try {
+            TimeUnit.MINUTES.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void testJsonConvert(){
+        ObjectMapper om = new ObjectMapper();
+        String s="{\"name\":\"Lucy\",\"salary\":\"1024\"}";
+        try {
+            Colleague c = om.readValue(s, Colleague.class);
+            System.out.println(c.getSalary().doubleValue());
+            System.out.println(c);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
