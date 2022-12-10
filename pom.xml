@@ -13,11 +13,11 @@
         <module>common</module>
         <module>gateway8999</module>
         <!-- <module>spring-security-oauth2-8233</module> -->
-        <module>message-service8888</module>
+        <!-- <module>message-service8888</module> -->
         <module>ggl-spring-security-common</module>
         <module>resource-client9992</module>
         <module>statistics8988</module>
-    <module>interview-demo</module>
+    <!-- <module>interview-demo</module> -->
   </modules>
 
     <properties>
@@ -25,9 +25,9 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.source>17</maven.compiler.source>
 
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.target>17</maven.compiler.target>
 
         <junit.version>4.12</junit.version>
 
