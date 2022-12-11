@@ -10,8 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.Version;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +24,7 @@ import lombok.ToString;
  * @author baomidou
  * @since 2022-05-17
  */
-@ApiModel(value = "Statistics对象", description = "统计分析表")
+// @ApiModel(value = "Statistics对象", description = "统计分析表")
 @Data
 @ToString
 @AllArgsConstructor
@@ -36,15 +35,15 @@ public class Statistics implements Serializable {
     @TableId(type = IdType.ASSIGN_UUID)
     private String id;
 
-    @ApiModelProperty("Create Time")
+    // @ApiModelProperty("Create Time")
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-    @ApiModelProperty("Update Time")
+    // @ApiModelProperty("Update Time")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
-    @ApiModelProperty("deleted")
+    // @ApiModelProperty("deleted")
     @TableLogic
     private Boolean deleted;
 

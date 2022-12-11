@@ -3,7 +3,7 @@ package com.ggl.cloud.controller;
 
 import java.util.Map;
 
-import javax.annotation.Resource;
+
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +19,8 @@ import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.entity.Video;
 import com.ggl.cloud.service.IVideoService;
 import com.ggl.cloud.service.feignservice.ResourceFeign;
+
+import jakarta.annotation.Resource;
 /**
  * 
  * description

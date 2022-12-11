@@ -5,8 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,6 +22,7 @@ import com.ggl.cloud.entity.User;
 import com.ggl.cloud.mapper.UserMapper;
 import com.ggl.cloud.service.IUserService;
 
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 /**
  * 

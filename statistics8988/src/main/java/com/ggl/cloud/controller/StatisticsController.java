@@ -1,10 +1,12 @@
 package com.ggl.cloud.controller;
 
 
-import javax.annotation.Resource;
+
 
 import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.service.IStatisticsService;
+
+import jakarta.annotation.Resource;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

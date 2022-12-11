@@ -3,13 +3,15 @@ package com.ggl.cloud.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
+
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.entity.Statistics;
 import com.ggl.cloud.mapper.StatisticsMapper;
 import com.ggl.cloud.service.IStatisticsService;
+
+import jakarta.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 

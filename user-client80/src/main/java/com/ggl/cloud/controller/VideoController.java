@@ -4,7 +4,7 @@ package com.ggl.cloud.controller;
 import java.io.IOException;
 import java.util.HashMap;
 
-import javax.annotation.Resource;
+
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.entity.Video;
 import com.ggl.cloud.feignservice.ServerFeign;
+
+import jakarta.annotation.Resource;
 /**
  * 
  * description

@@ -14,8 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -27,44 +26,44 @@ import lombok.NoArgsConstructor;
  * @author baomidou
  * @since 2022-07-05
  */
-@ApiModel(value = "Resource对象", description = "资源表")
+// @ApiModel(value = "Resource对象", description = "资源表")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Resource implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("Primary Key")
+    // @ApiModelProperty("Primary Key")
     @TableId(value = "id", type = IdType.ASSIGN_UUID)
     private String id;
 
-    @ApiModelProperty("Create Time")
+    // @ApiModelProperty("Create Time")
     @TableField(fill = FieldFill.INSERT)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime createTime;
 
-    @ApiModelProperty("Update Time")
+    // @ApiModelProperty("Update Time")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime updateTime;
 
-    @ApiModelProperty("deleted")
+    // @ApiModelProperty("deleted")
     @TableLogic
     private Boolean deleted;
 
-    @ApiModelProperty("version")
+    // @ApiModelProperty("version")
     @Version
     private Integer version;
 
-    @ApiModelProperty("resource_name")
+    // @ApiModelProperty("resource_name")
     private String resourceName;
 
-    @ApiModelProperty("type")
+    // @ApiModelProperty("type")
     private String resourceType;
 
-    @ApiModelProperty("request_type")
+    // @ApiModelProperty("request_type")
     private String requestType;
 
 

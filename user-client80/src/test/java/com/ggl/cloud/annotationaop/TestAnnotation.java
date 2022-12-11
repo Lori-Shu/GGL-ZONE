@@ -15,15 +15,15 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class TestAnnotation {
     @Test
     public void testAnnotation(){
-    ApplicationContext ctx = new AnnotationConfigApplicationContext(MyConfig.class);
+    // ApplicationContext ctx = new AnnotationConfigApplicationContext(MyConfig.class);
     // System.out.println(ctx.getBeanDefinitionCount());
 //     for(String s:ctx.getBeanDefinitionNames()){
 //     System.out.println(s);
 // }
-Object bean = ctx.getBean("myInterface");
-System.out.println(bean);
-String testAnnotationAop = ((MyInterface)bean).testAnnotationAop("helloScanner!");
-System.out.println(testAnnotationAop);
+// Object bean = ctx.getBean("myInterface");
+// System.out.println(bean);
+// String testAnnotationAop = ((MyInterface)bean).testAnnotationAop("helloScanner!");
+// System.out.println(testAnnotationAop);
     // System.out.println(MyInterface.class.getDeclaredAnnotations()[0].toString());
     //TODO:给Student类上添加 @MyComponent2  注解
     // MyInterface bean = ctx.getBean(MyInterface.class);

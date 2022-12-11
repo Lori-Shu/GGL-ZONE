@@ -2,7 +2,7 @@ package com.ggl.cloud.controller;
 
 import java.util.Map;
 
-import javax.annotation.Resource;
+
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.entity.Note;
 import com.ggl.cloud.service.INoteService;
+
+import jakarta.annotation.Resource;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -2,7 +2,7 @@ package com.ggl.cloud.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
+
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -10,6 +10,8 @@ import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.entity.Friend;
 import com.ggl.cloud.mapper.ChatMapper;
 import com.ggl.cloud.service.IChatService;
+
+import jakarta.annotation.Resource;
 
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;

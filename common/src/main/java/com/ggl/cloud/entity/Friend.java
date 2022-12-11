@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
-import io.swagger.annotations.ApiModel;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,7 +33,7 @@ import lombok.NoArgsConstructor;
  * createTime 2022年8月19日-下午2:25:09
  *
  */
-@ApiModel(value = "Friend对象", description = "好友对象")
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

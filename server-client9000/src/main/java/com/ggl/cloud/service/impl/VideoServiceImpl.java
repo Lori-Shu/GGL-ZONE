@@ -60,13 +60,13 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper,Video> implements 
             // 分页查询视频信息
             Page<Video> videoPage=new Page<>(pageNumber,pageSize);
         QueryWrapper<Video> queryWrapper=new QueryWrapper<>();
-        if(!StringUtils.isEmpty(video.getUserId())){
+        if(!StringUtils.hasLength(video.getUserId())){
             queryWrapper.like("user_id", video.getUserId());
         }
-        if(!StringUtils.isEmpty(video.getVideoName())){
+        if(!StringUtils.hasLength(video.getVideoName())){
             queryWrapper.like("video_name", video.getVideoName());
         }
-        if (!StringUtils.isEmpty(video.getVideoAuthor())) {
+        if (!StringUtils.hasLength(video.getVideoAuthor())) {
             queryWrapper.like("video_author", video.getVideoAuthor());
         }
         long count = count(queryWrapper);

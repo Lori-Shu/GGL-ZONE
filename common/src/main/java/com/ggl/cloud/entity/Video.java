@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
-import io.swagger.annotations.ApiModel;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value = "Video对象", description = "视频对象")
+// @ApiModel(value = "Video对象", description = "视频对象")
 public class Video implements Serializable {
     private static final long serialVersionUID = 1L;
     @TableId(value="id",type =IdType.ASSIGN_UUID)

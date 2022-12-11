@@ -1,7 +1,7 @@
 
 package com.ggl.cloud;
 
-import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +15,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author Lori
  * createTime 2022年8月18日-下午9:28:52
  */
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class,DruidDataSourceAutoConfigure.class})
+@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 @EnableDiscoveryClient
 @EnableFeignClients
 

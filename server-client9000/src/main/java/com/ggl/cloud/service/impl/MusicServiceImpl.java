@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
+
 
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -36,6 +36,7 @@ import com.ggl.cloud.entity.Music;
 import com.ggl.cloud.mapper.MusicMapper;
 import com.ggl.cloud.service.IMusicService;
 
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 /**
  * 
@@ -81,20 +82,20 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
     public CommonResult selectMusicPage(int pageNumber, int pageSize, Music music) {
         Page<Music> musicPage = new Page<>(pageNumber, pageSize);
         QueryWrapper<Music> queryWrapper = new QueryWrapper<>();
-        if (StringUtils.isEmpty(music.getUserId())) {
+        if (StringUtils.hasLength(music.getUserId())) {
             throw new RuntimeException("userId不能为空");
         }
-        if (!StringUtils.isEmpty(music.getMusicName())) {
+        if (!StringUtils.hasLength(music.getMusicName())) {
             queryWrapper.like("music_name", music.getMusicName());
         }
-        if (!StringUtils.isEmpty(music.getUserId())) {
+        if (!StringUtils.hasLength(music.getUserId())) {
             queryWrapper.like("user_id", music.getUserId());
         }
 
-        if (!StringUtils.isEmpty(music.getMusician())) {
+        if (!StringUtils.hasLength(music.getMusician())) {
             queryWrapper.like("musician", music.getMusician());
         }
-        if (!StringUtils.isEmpty(music.getAlbum())) {
+        if (!StringUtils.hasLength(music.getAlbum())) {
             queryWrapper.like("album", music.getAlbum());
         }
         queryWrapper.orderByDesc("update_time");

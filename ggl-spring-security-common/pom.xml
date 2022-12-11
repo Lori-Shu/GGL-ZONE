@@ -24,15 +24,15 @@
   <dependencies>
 
     <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-security</artifactId>
-    </dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+  </dependency>
 
-    <dependency>
+    <!-- <dependency>
       <groupId>com.10duke.client.jwt</groupId>
       <artifactId>jjwt</artifactId>
       <version>${jjwt.version}</version>
-    </dependency>
+    </dependency> -->
 
     <dependency>
       <groupId>com.ggl</groupId>

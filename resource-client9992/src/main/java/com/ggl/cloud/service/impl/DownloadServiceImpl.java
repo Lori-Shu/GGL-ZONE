@@ -8,9 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import javax.annotation.Resource;
 
-import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +19,7 @@ import com.ggl.cloud.feignservice.ServerFeign;
 import com.ggl.cloud.service.DownloadService;
 import com.ggl.cloud.service.IResourceService;
 
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 /**
  * 
@@ -40,8 +39,8 @@ public class DownloadServiceImpl implements DownloadService {
     @Resource
     private ServerFeign serverFeign;
 
-    @Resource
-    private RocketMQTemplate rocketMqTemplate;
+    // @Resource
+    // private RocketMQTemplate rocketMqTemplate;
 
     @Override
     public byte[] downloadMusic(Music music) throws IOException {

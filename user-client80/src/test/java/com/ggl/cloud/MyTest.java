@@ -13,7 +13,7 @@ import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Resource;
+
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ggl.cloud.entity.Music;
 import com.ggl.cloud.testentity.Colleague;
 
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 
 // @SpringBootTest(classes = UserClient80.class)

@@ -73,28 +73,28 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
     @Cacheable(value = "selectPageNote",key = "T(String).valueOf(#pageNumber).concat('-').concat(#pageSize).concat('-').concat(#note.toString())")
     public CommonResult selectPage(int pageNumber, int pageSize, Note note) {
         // 分页查询笔记
-        if(StringUtils.isEmpty(note.getUserId())){
+        if(StringUtils.hasLength(note.getUserId())){
             throw new RuntimeException("userId不能为空");
         }
         Page<Note> page=new Page<>(pageNumber,pageSize);
         QueryWrapper<Note> queryWrapper=new QueryWrapper<>();
-        if(!StringUtils.isEmpty(note.getTitle())){
+        if(!StringUtils.hasLength(note.getTitle())){
             queryWrapper.like("title", note.getTitle());
         }
-        if(!StringUtils.isEmpty(note.getUserId())){
+        if(!StringUtils.hasLength(note.getUserId())){
             queryWrapper.like("user_id", note.getUserId());
         }
 
-        if(!StringUtils.isEmpty(note.getYear())){
+        if(!StringUtils.hasLength(note.getYear())){
             queryWrapper.like("year", note.getYear());
         }
-        if(!StringUtils.isEmpty(note.getMonth())){
+        if(!StringUtils.hasLength(note.getMonth())){
             queryWrapper.like("month", note.getMonth());
         }
-        if(!StringUtils.isEmpty(note.getDay())){
+        if(!StringUtils.hasLength(note.getDay())){
             queryWrapper.like("day", note.getDay());
         }
-        if(!StringUtils.isEmpty(note.getContent())){
+        if(!StringUtils.hasLength(note.getContent())){
             queryWrapper.like("content", note.getContent());
         }
         queryWrapper.orderByDesc("update_time");

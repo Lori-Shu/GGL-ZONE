@@ -9,7 +9,7 @@ package com.ggl.cloud.controller;
 
 import java.util.HashMap;
 
-import javax.annotation.Resource;
+
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +20,7 @@ import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.entity.Note;
 import com.ggl.cloud.feignservice.ServerFeign;
 
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 /**
  * 

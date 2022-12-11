@@ -2,7 +2,7 @@ package com.ggl.cloud.controller;
 
 import java.util.Map;
 
-import javax.annotation.Resource;
+
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +17,7 @@ import com.ggl.cloud.entity.Music;
 import com.ggl.cloud.service.IMusicService;
 import com.ggl.cloud.service.feignservice.ResourceFeign;
 
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 /**
  * 

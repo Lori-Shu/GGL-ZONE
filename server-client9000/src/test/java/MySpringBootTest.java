@@ -1,6 +1,6 @@
 
 
-import javax.annotation.Resource;
+
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.ggl.cloud.ServerClient9000;
 import com.ggl.cloud.entity.Music;
 import com.ggl.cloud.service.IMusicService;
+
+import jakarta.annotation.Resource;
 @SpringBootTest(classes = ServerClient9000.class)
 public class MySpringBootTest {
     @Resource

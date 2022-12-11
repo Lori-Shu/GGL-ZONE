@@ -3,12 +3,14 @@ package com.ggl.cloud;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ggl.cloud.entity.CommonResult;
 import com.ggl.cloud.service.IStatisticsService;
 import com.ggl.cloud.service.feignservice.ServerFeign;
+
+import jakarta.annotation.Resource;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

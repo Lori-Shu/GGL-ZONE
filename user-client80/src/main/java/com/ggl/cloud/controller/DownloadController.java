@@ -8,10 +8,7 @@ package com.ggl.cloud.controller;
 
 import java.io.ByteArrayInputStream;
 
-import javax.annotation.Resource;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +20,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ggl.cloud.entity.Music;
 import com.ggl.cloud.feignservice.ResourceFeign;
 
+import jakarta.annotation.Resource;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 /**

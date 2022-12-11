@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
-import io.swagger.annotations.ApiModel;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
  * @author baomidou
  * @since 2022-05-01
  */
-@ApiModel(value = "Note对象", description = "笔记对象")
+// @ApiModel(value = "Note对象", description = "笔记对象")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Note implements Serializable {

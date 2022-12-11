@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
-import io.swagger.annotations.ApiModel;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(value = "Music对象", description = "音乐对象")
+// @ApiModel(value = "Music对象", description = "音乐对象")
 public class Music implements Serializable {
     private static final long serialVersionUID = 1L;
     @TableId(value="id",type =IdType.ASSIGN_UUID)

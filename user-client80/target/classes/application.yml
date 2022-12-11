@@ -26,11 +26,11 @@ spring:
       # 不限制请求体大小
       max-request-size: -1
       # 临时IO目录
-      location: E://GGL-ZONE-resources/tempio80/
+      # location: E://GGL-ZONE-resources/tempio80/
       # 不延迟解析
       resolve-lazily: false
       # 超过1Mb，就IO到临时目录
-      file-size-threshold: 1MB
+      # file-size-threshold: 1MB
     
   cloud:
     nacos:
@@ -39,15 +39,16 @@ spring:
   devtools:
     livereload:
       port: 35731
-  redis:
-    host: localhost
-    port: 6379
-    lettuce:
-      pool:
-        max-active: 20
-        max-wait: -1
-        max-idle: 5
-        min-idle: 0
+  data:    
+    redis:
+      host: localhost
+      port: 6379
+      lettuce:
+        pool:
+          max-active: 20
+          max-wait: -1
+          max-idle: 5
+          min-idle: 0
 logging:
   level:
     root: warn

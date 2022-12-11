@@ -59,11 +59,11 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
-        <dependency>
+        <!-- <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>${jedis.version}</version>
-        </dependency>
+        </dependency> -->
 
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -71,11 +71,11 @@
             <version>${commons-pool2.version}</version>
         </dependency>
 
-        <dependency>
+        <!-- <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool-all.version}</version>
-        </dependency>
+        </dependency> -->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -90,7 +90,7 @@
         </dependency>
 
 
-        <dependency>
+        <!-- <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>${springfox-swagger2.version}</version>
@@ -100,11 +100,6 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${springfox-swagger-ui.version}</version>
-        </dependency>
-
-        <!-- <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-security</artifactId>
         </dependency> -->
 
         <dependency>
@@ -133,11 +128,11 @@
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
 
-        <dependency>
+        <!-- <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>${druid-spring-boot-starter.version}</version>
-        </dependency>
+        </dependency> -->
 
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -158,11 +153,11 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.rocketmq/rocketmq-spring-boot-starter -->
-        <dependency>
+        <!-- <dependency>
             <groupId>org.apache.rocketmq</groupId>
             <artifactId>rocketmq-spring-boot-starter</artifactId>
             <version>2.2.2</version>
-        </dependency>
+        </dependency> -->
 
 
 
