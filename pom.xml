@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1</version>
     </parent>
 
     <groupId>com.ggl</groupId>
@@ -13,16 +13,26 @@
     <version>1.0</version>
 
     <modules>
-        <module>user-client80</module>
+
+        <module>user-client88</module>
+
         <module>server-client9000</module>
+
         <module>common</module>
+
         <module>gateway8999</module>
+
         <!-- <module>spring-security-oauth2-8233</module> -->
+
         <!-- <module>message-service8888</module> -->
+
         <module>ggl-spring-security-common</module>
+
         <module>resource-client9992</module>
+
         <module>statistics8988</module>
-    <!-- <module>interview-demo</module> -->
+
+        <!-- <module>interview-demo</module> -->
   </modules>
 
     <properties>
@@ -94,7 +104,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>3.0.0</version>
+                <version>3.0.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -102,7 +112,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2021.0.5</version>
+                <version>2022.0.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

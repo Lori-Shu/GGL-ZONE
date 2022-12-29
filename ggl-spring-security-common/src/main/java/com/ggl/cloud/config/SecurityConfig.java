@@ -3,13 +3,11 @@ package com.ggl.cloud.config;
 
 import java.util.function.Supplier;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.http.HttpMethod;
 import org.springframework.lang.Nullable;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.AuthorizationManager;
@@ -24,13 +22,12 @@ import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.intercept.AuthorizationFilter;
-import org.springframework.security.web.authentication.AuthenticationFilter;
 import org.springframework.security.web.header.HeaderWriterFilter;
 import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ggl.cloud.entity.User;
+import com.ggl.cloud.security.GglAuthorizationFilter;
 import com.ggl.cloud.utils.SecurityRedisUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -68,8 +65,9 @@ public class SecurityConfig {
           return new AuthorizationDecision(false);
         }
         } catch (Exception e) {
-          log.warn("授权过程出现异常"+e.getMessage());
-          throw new AccessDeniedException("Access Denied");
+          log.warn("授权过程出现异常" + e.getMessage());
+          return new AuthorizationDecision(false);
+          // throw new AccessDeniedException("Access Denied");
       }
       }
 
@@ -77,17 +75,20 @@ public class SecurityConfig {
 
   }
   @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity,AuthorizationFilter authorizationFilter,ApplicationContext applicationContext) {
+  public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity,AuthorizationManager<HttpServletRequest> authorizationManager) {
     try {
-    HttpSecurity httpS = httpSecurity.authorizeHttpRequests()
-    .requestMatchers("/resource/**").hasAuthority("NORMAL")
-    .requestMatchers("/gglLogin").hasAuthority("STRANGER")
-        .and().addFilterAfter(authorizationFilter, HeaderWriterFilter.class);
-    String authenticationFilter="authenticationFilter";
-    Object bean = applicationContext.getBean(authenticationFilter);
-    if(bean!=null){
-      httpS.addFilterAfter((AuthenticationFilter)bean, AuthorizationFilter.class);
-    }
+      HttpSecurity httpS = httpSecurity.csrf().disable()
+          .cors().and()
+          .authorizeHttpRequests(authorize -> {
+            authorize.requestMatchers("/resource/**", "/user/note/sayhi").permitAll()
+                .requestMatchers("/gglLogin").permitAll()
+                .anyRequest().authenticated();
+          });
+      // String authenticationFilter="authenticationFilter";
+      // Object bean = applicationContext.getBean(authenticationFilter);
+      // if(bean!=null){
+      //   httpS.addFilterAfter((AuthenticationFilter)bean, AuthorizationFilter.class);
+      // }
       return httpS.build();
     } catch (Exception e) {
       log.warn("创建FilterChain出现异常"+e.getMessage());

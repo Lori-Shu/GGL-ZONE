@@ -74,6 +74,16 @@
             "projectName": "resource-client9992",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-UserClient88<user-client88>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ggl.cloud.UserClient88",
+            "projectName": "user-client88",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

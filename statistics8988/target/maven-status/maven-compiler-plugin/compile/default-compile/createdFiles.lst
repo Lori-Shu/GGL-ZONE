@@ -1,7 +1,7 @@
-com/ggl/cloud/service/impl/StatisticsServiceImpl.class
-com/ggl/cloud/controller/StatisticsController.class
-com/ggl/cloud/mapper/StatisticsMapper.class
-com/ggl/cloud/Statistics8988.class
-com/ggl/cloud/service/IStatisticsService.class
-com/ggl/cloud/entity/Statistics.class
-com/ggl/cloud/service/feignservice/ServerFeign.class
+com\ggl\cloud\mapper\StatisticsMapper.class
+com\ggl\cloud\controller\StatisticsController.class
+com\ggl\cloud\service\impl\StatisticsServiceImpl.class
+com\ggl\cloud\service\feignservice\ServerFeign.class
+com\ggl\cloud\Statistics8988.class
+com\ggl\cloud\entity\Statistics.class
+com\ggl\cloud\service\IStatisticsService.class

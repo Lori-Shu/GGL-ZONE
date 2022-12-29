@@ -1,0 +1,10 @@
+com\ggl\cloud\interceptor\MyFeignClientInterceptor.class
+com\ggl\cloud\controller\DownloadController.class
+com\ggl\cloud\controller\ChatController.class
+com\ggl\cloud\UserClient88.class
+com\ggl\cloud\feignservice\ResourceFeign.class
+com\ggl\cloud\controller\MusicController.class
+com\ggl\cloud\controller\UserController.class
+com\ggl\cloud\feignservice\ServerFeign.class
+com\ggl\cloud\controller\VideoController.class
+com\ggl\cloud\controller\NoteController.class

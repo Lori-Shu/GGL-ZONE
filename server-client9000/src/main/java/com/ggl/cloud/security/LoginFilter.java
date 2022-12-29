@@ -17,7 +17,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +41,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
       throws IOException, ServletException {
         // 校验是否已经过滤过了，因为注册为bean过滤器会在security过滤器链和默认过滤器链中都起作用
         Object isFiltered = request.getAttribute(getFilterName());
-        if ((Boolean) isFiltered) {
+        if (isFiltered!=null&&(Boolean) isFiltered) {
           chain.doFilter(request, response);
           return;
         }

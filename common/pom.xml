@@ -13,6 +13,7 @@
 
     <artifactId>common</artifactId>
     <version>1.0</version>
+    <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -65,11 +66,11 @@
             <version>${jedis.version}</version>
         </dependency> -->
 
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
-            <version>${commons-pool2.version}</version>
-        </dependency>
+        <!-- <dependency> -->
+            <!-- <groupId>org.apache.commons</groupId> -->
+            <!-- <artifactId>commons-pool2</artifactId> -->
+            <!-- <version>${commons-pool2.version}</version> -->
+        <!-- </dependency> -->
 
         <!-- <dependency>
             <groupId>cn.hutool</groupId>
@@ -110,12 +111,13 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>4.0.0</version>
         </dependency>
 
-        <dependency>
+        <!-- <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
+        </dependency> -->
 
         <dependency>
             <groupId>mysql</groupId>
@@ -123,10 +125,10 @@
             <version>${mysql.version}</version>
         </dependency>
 
-        <dependency>
+        <!-- <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
+        </dependency> -->
 
         <!-- <dependency>
             <groupId>com.alibaba</groupId>
@@ -166,9 +168,13 @@
     <build>
         <plugins>
 
+            <!-- 资源文件拷贝插件 -->
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
             </plugin>
 
         </plugins>
