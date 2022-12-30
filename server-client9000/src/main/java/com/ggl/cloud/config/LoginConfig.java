@@ -28,10 +28,6 @@ public class LoginConfig {
   @Bean
   public DaoAuthenticationProvider daoAuthenticationProvider(UserDetailsService userDetailsService,PasswordEncoder passwordEncoder,StringRedisTemplate stringRedisTemplate,
   ObjectMapper objectMapper) {
-    final UserDetailsService service = userDetailsService;
-    final PasswordEncoder encoder = passwordEncoder;
-    final StringRedisTemplate redisTemplate = stringRedisTemplate;
-    final ObjectMapper om = objectMapper;
     return new DaoAuthenticationProvider(){
 
       @Override
@@ -40,15 +36,15 @@ public class LoginConfig {
           String username = (String) authentication.getPrincipal();
           String password = (String) authentication.getCredentials();
           if (StringUtils.hasLength(username) && StringUtils.hasLength(password)) {
-            UserDetails user = service.loadUserByUsername(username);
+            UserDetails user = userDetailsService.loadUserByUsername(username);
             if (user == null) {
               throw new AccessDeniedException("Access Denied");
             }
-            boolean matches = encoder.matches(password, user.getPassword());
+            boolean matches = passwordEncoder.matches(password, user.getPassword());
             if (!matches) {
               throw new AccessDeniedException("Access Denied");
             }
-            String token = SecurityRedisUtil.createToken(user, redisTemplate,om);
+            String token = SecurityRedisUtil.createToken(user, stringRedisTemplate,objectMapper);
             return UsernamePasswordAuthenticationToken.authenticated(token, null, null);
 
           } else {

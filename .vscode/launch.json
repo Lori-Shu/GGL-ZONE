@@ -16,16 +16,6 @@
         },
         {
             "type": "java",
-            "name": "Spring Boot-UserClient80<user-client80>",
-            "request": "launch",
-            "console": "internalConsole",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "com.ggl.cloud.UserClient80",
-            "projectName": "user-client80",
-            "envFile": "${workspaceFolder}/.env"
-        },
-        {
-            "type": "java",
             "name": "Spring Boot-Gateway8999<gateway8999>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
@@ -82,6 +72,7 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.ggl.cloud.UserClient88",
             "projectName": "user-client88",
+            "console": "internalConsole",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

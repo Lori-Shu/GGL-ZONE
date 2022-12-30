@@ -33,9 +33,9 @@ spring:
       # file-size-threshold: 1MB
     
   cloud:
-    # nacos:
-    #   discovery:
-    #     server-addr: localhost:8848
+    nacos:
+      discovery:
+        server-addr: 106.14.238.5:8848
     openfeign:
     # 这里使用httpclient是不生效的必须是client
       client:
@@ -43,39 +43,39 @@ spring:
           default:
             connectTimeout: 3600000
             readTimeout: 3600000
-    consul:
-      # Consul 服务器地址
-      host: 106.14.238.5
-      port: 8500
-      # 配置中心相关配置
-      # config:
-      #   # 是否启用配置中心,默认值 true 开启
-      #   enabled: true
-      #   # 设置配置的基本文件夹,默认值config 可以理解为配置文件所在的最外层文件夹
-      #   prefix: config
-      #   # 设置应用的文件夹名称,默认值application 一般建议设置为微服务应用名称
-      #   default-context: orderService
-      #   # 配置环境分隔符,默认值","和default-context配置项搭配
-      #   # 例如应用orderService 分别有环境 default, dev, test, prod
-      #   # 只需 config 文件下创建 orderService, orderService-dev, orderService-test, orderService-prod文件夹
-      #   profile-separator: '-'
-      #   # 指定配置格式为yamL
-      #   format: yaml
-      #   # Consul Key/Values 中的Key, Value 对应整个配置文件
-      #   data-key: orderServiceConfig
-      #   # 以上配置可以理解为:加载 config/orderService/ 文件夹下Key 为orderServiceConfig 的Value 对应的配置
-      #   watch:
-      #     # 是否开启自动刷新,默认值true 开启
-      #     enabled: true
-      #     # 刷新频率,单位:毫秒,默认值1000
-      #     delay: 1000
-      discovery:
-        register: true                             # 是否需要注册
-        instance-id: ${spring.application.name}-01 # 注册实例id（必须唯一）
-        service-name: ${spring.application.name}   # 服务名称
-        port: ${server.port}                       # 服务端口（默认就是当前服务端口）
-        prefer-ip-address: true                    # 是否使用ip地址注册(开启后可以在web界面看到实例ip)
-        # ip-address: ${spring.cloud.client.ip-address} # 服务请求ip（默认就是当前服务ip）
+    # consul:
+    #   # Consul 服务器地址
+    #   host: 106.14.238.5
+    #   port: 8500
+    #   # 配置中心相关配置
+    #   config:
+    #     # 是否启用配置中心,默认值 true 开启
+    #     enabled: true
+    #     # 设置配置的基本文件夹,默认值config 可以理解为配置文件所在的最外层文件夹
+    #     prefix: config
+    #     # 设置应用的文件夹名称,默认值application 一般建议设置为微服务应用名称
+    #     default-context: orderService
+    #     # 配置环境分隔符,默认值","和default-context配置项搭配
+    #     # 例如应用orderService 分别有环境 default, dev, test, prod
+    #     # 只需 config 文件下创建 orderService, orderService-dev, orderService-test, orderService-prod文件夹
+    #     profile-separator: '-'
+    #     # 指定配置格式为yamL
+    #     format: yaml
+    #     # Consul Key/Values 中的Key, Value 对应整个配置文件
+    #     data-key: orderServiceConfig
+    #     # 以上配置可以理解为:加载 config/orderService/ 文件夹下Key 为orderServiceConfig 的Value 对应的配置
+    #     watch:
+    #       # 是否开启自动刷新,默认值true 开启
+    #       enabled: true
+    #       # 刷新频率,单位:毫秒,默认值1000
+    #       delay: 1000
+    #   discovery:
+    #     register: true                             # 是否需要注册
+    #     instance-id: ${spring.application.name}-01 # 注册实例id（必须唯一）
+    #     service-name: ${spring.application.name}   # 服务名称
+    #     port: ${server.port}                       # 服务端口（默认就是当前服务端口）
+    #     prefer-ip-address: true                    # 是否使用ip地址注册(开启后可以在web界面看到实例ip)
+    #     # ip-address: ${spring.cloud.client.ip-address} # 服务请求ip（默认就是当前服务ip）
   devtools:
     livereload:
       port: 35731
