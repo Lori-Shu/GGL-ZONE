@@ -33,9 +33,11 @@ spring:
       # file-size-threshold: 1MB
     
   cloud:
-    nacos:
-      discovery:
-        server-addr: 106.14.238.5:8848
+  #   nacos:
+  #     discovery:
+  #       ip: 106.14.238.5:88
+  #       server-addr: 106.14.238.5:8848
+        
     openfeign:
     # 这里使用httpclient是不生效的必须是client
       client:

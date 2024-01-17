@@ -28,6 +28,8 @@ public class SecurityRedisUtil {
 
   public final static String HEADSTR = "token";
   public final static Long EXPIRE = 24L;
+  public final static String USERNAMESTR = "username";
+  public final static String AUTHSTR = "authorities";
   private final static String SECRET = """
   春江潮水连海平，海上明月共潮生。
 
@@ -87,8 +89,7 @@ public class SecurityRedisUtil {
     try {
       String username = user.getUsername();
     String token = DigestUtils.md5DigestAsHex((username + SECRET).getBytes());
-    User gglUser = om.convertValue(user, User.class);
-    redisTemplate.opsForValue().set(token, om.writeValueAsString(gglUser), EXPIRE, TimeUnit.HOURS);
+    redisTemplate.opsForValue().set(token, om.writeValueAsString(user), EXPIRE, TimeUnit.HOURS);
     return token;
   } catch (JsonProcessingException e) {
     logger.warn("创建token出现json转换异常");
@@ -98,3 +99,4 @@ public class SecurityRedisUtil {
   
   }
 }
+

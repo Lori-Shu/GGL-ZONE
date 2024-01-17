@@ -9,6 +9,8 @@ package com.ggl.cloud.controller;
 
 import java.util.HashMap;
 
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/user/note")
 @Slf4j
+@Transactional
 public class NoteController {
     @Resource
     private ServerFeignClient service;
@@ -40,6 +43,7 @@ public class NoteController {
     public String sayHi() {
         return "hi!";
     }
+
     @PostMapping("add")
     public CommonResult addNote(@RequestBody Note note) {
         return service.add(note);

@@ -15,55 +15,23 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ggl.cloud.security.LoginFilter;
+import com.ggl.cloud.security.MyDaoAuthenticationProvider;
+import com.ggl.cloud.service.impl.UserServiceImpl;
 import com.ggl.cloud.utils.SecurityRedisUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Configuration
-@Slf4j
 public class LoginConfig {
+  
   @Bean
-  public DaoAuthenticationProvider daoAuthenticationProvider(UserDetailsService userDetailsService,PasswordEncoder passwordEncoder,StringRedisTemplate stringRedisTemplate,
+  public ProviderManager providerManager(UserDetailsService userDetailsService,PasswordEncoder passwordEncoder,StringRedisTemplate stringRedisTemplate,
   ObjectMapper objectMapper) {
-    return new DaoAuthenticationProvider(){
-
-      @Override
-      public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        try {
-          String username = (String) authentication.getPrincipal();
-          String password = (String) authentication.getCredentials();
-          if (StringUtils.hasLength(username) && StringUtils.hasLength(password)) {
-            UserDetails user = userDetailsService.loadUserByUsername(username);
-            if (user == null) {
-              throw new AccessDeniedException("Access Denied");
-            }
-            boolean matches = passwordEncoder.matches(password, user.getPassword());
-            if (!matches) {
-              throw new AccessDeniedException("Access Denied");
-            }
-            String token = SecurityRedisUtil.createToken(user, stringRedisTemplate,objectMapper);
-            return UsernamePasswordAuthenticationToken.authenticated(token, null, null);
-
-          } else {
-            throw new AccessDeniedException("Access Denied");
-          }
-        } catch (AccessDeniedException e) {
-          throw new AccessDeniedException("Access Denied");
-        }
-        catch (Exception e) {
-          log.warn("登录过程出现异常"+e.getMessage());
-          throw new AccessDeniedException("Access Denied");
-        }
-        
-      }
-      
-    };
-  }
-  @Bean
-  public AuthenticationManager authenticationManager(DaoAuthenticationProvider authenticationProvider) {
-    return new ProviderManager(authenticationProvider);
+    return new ProviderManager(new MyDaoAuthenticationProvider(userDetailsService, passwordEncoder, stringRedisTemplate, objectMapper));
   }
 }

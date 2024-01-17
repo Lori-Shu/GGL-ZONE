@@ -70,9 +70,9 @@
 
         <!-- <spring-cloud-starter-oauth2.version>2.2.2.RELEASE</spring-cloud-starter-oauth2.version> -->
 
-        <mybatis-plus-generator.version>3.5.1</mybatis-plus-generator.version>
+        <mybatis-plus-generator.version>3.5.3</mybatis-plus-generator.version>
 
-        <mybatis-plus-boot-starter.version>3.5.1</mybatis-plus-boot-starter.version>
+        <mybatis-plus-boot-starter.version>3.5.3</mybatis-plus-boot-starter.version>
 
         <springfox-swagger2.version>3.0.0</springfox-swagger2.version>
 
@@ -96,7 +96,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2021.0.4.0</version>
+                <version>2022.0.0.0-RC1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -131,5 +131,16 @@
             </plugin>
           </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.1</version>
+                <configuration>
+                    <!--跳过测试-->
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>

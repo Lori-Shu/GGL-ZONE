@@ -28,7 +28,7 @@ public class CodeGenerator {
     .packageConfig(builder -> {
         builder.parent("com.ggl.cloud") // 设置父包名
             .moduleName("") // 设置父包模块名
-            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "E:\\GGL-ZONE\\statistics8988\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
+            .pathInfo(Collections.singletonMap(OutputFile.xml, "E:\\GGL-ZONE\\statistics8988\\src\\main\\resources\\mapper")); // 设置mapperXml生成路径
     })
     .strategyConfig(builder -> {
         builder.addInclude("statistics") // 设置需要生成的表名

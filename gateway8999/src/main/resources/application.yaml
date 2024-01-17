@@ -7,14 +7,15 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        ip: 106.14.238.5:8999
+        server-addr: 106.14.238.5:8848
     gateway:
       discovery:
         locator:
           enabled: true
       routes:
         - id: userClient_route
-          uri: lb://UserClient80
+          uri: lb://UserClient88
           predicates:
             - Path=/user/**
 
@@ -41,10 +42,10 @@ spring:
             # 允许携带认证信息
             allow-credentials: true
             # 允许跨域的源(网站域名/ip)，设置*为全部
-            allowedOrigins: "*"
+            allowedOriginPatterns: "*"
             # 允许跨域的method， 默认为GET和OPTIONS，设置*为全部
             allowedMethods: "*"
             # 允许跨域请求里的head字段，设置*为全部
             allowedHeaders: "*"
-      default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Origin, RETAIN_UNIQUE
+      # default-filters:
+      #   - DedupeResponseHeader=Access-Control-Allow-Origin, RETAIN_UNIQUE

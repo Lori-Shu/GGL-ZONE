@@ -1,6 +1,7 @@
 package com.ggl.cloud.config;
 
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.intercept.AuthorizationFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.header.HeaderWriterFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,20 +31,30 @@ public class SecurityConfig {
   }
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity,StringRedisTemplate stringRedisTemplate,
-  ObjectMapper objectMapper) {
+  ObjectMapper objectMapper,ApplicationContext applicationContext) {
     try {
       HttpSecurity httpS = httpSecurity.csrf().disable()
           .cors().and()
           .authorizeHttpRequests(authorize -> {
-            authorize.requestMatchers("/resource/**", "/favicon.ico").permitAll()
-                .requestMatchers("/gglLogin","/login").permitAll()
+            authorize.requestMatchers("/server/user/registry").permitAll()
+            .requestMatchers("/actuator/health").permitAll()
+            .requestMatchers("/favicon.ico").permitAll()
+            .requestMatchers("/resource/**").permitAll()
                 .anyRequest().access(new GglAuthorizationManager(stringRedisTemplate, objectMapper));
           });
-      // String authenticationFilter="authenticationFilter";
-      // Object bean = applicationContext.getBean(authenticationFilter);
-      // if(bean!=null){
-      //   httpS.addFilterAfter((AuthenticationFilter)bean, AuthorizationFilter.class);
-      // }
+          try {
+            String authenticationFilterClazz="com.ggl.cloud.security.LoginFilter";
+            Class<?> clazz = Class.forName(authenticationFilterClazz);
+            String providerManager="providerManager";
+            Object providerObject = applicationContext.getBean(providerManager);
+            if(clazz!=null){
+              httpS.addFilter((UsernamePasswordAuthenticationFilter) (clazz.getConstructors()[0].newInstance(providerObject,objectMapper)));
+            }
+          } catch (Exception e) {
+            log.warn("未找到对应bean未创建LoginFilter");
+            // 未查找到bean则啥也不做
+          }
+      
       httpS.exceptionHandling(exceptionHandlingCustomizer -> {
         exceptionHandlingCustomizer.authenticationEntryPoint((req, res, exception) -> {
           log.warn(exception.getMessage());

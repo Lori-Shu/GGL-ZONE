@@ -8,6 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.ApplicationContext;
+
+
 
 /**
  * 
@@ -16,9 +19,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author Lori
  * createTime 2022年8月18日-下午9:28:52
  */
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
-@EnableDiscoveryClient
-@EnableFeignClients(basePackages = "com.ggl.cloud.feignservice")
+@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class})
+// @EnableDiscoveryClient
+@EnableFeignClients
 public class UserClient88 {
     public static void main(String[] args) {
         SpringApplication.run(UserClient88.class, args);

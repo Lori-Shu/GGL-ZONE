@@ -3,6 +3,7 @@ package com.ggl.cloud;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.scheduling.annotation.EnableAsync;
 /**
  * 
  * description
@@ -13,7 +14,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-
+@EnableAsync
 public class Gateway8999 {
     public static void main(String[] args) {
         SpringApplication.run(Gateway8999.class, args);
